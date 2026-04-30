@@ -89,8 +89,9 @@ const Resume = ({ isOpen, onClose }) => {
                   <h4 className="text-xl font-black text-slate-900">Retail Sales Dashboard</h4>
                   <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Data Analyst</p>
                   <ul className="text-slate-600 text-sm space-y-2 font-medium">
-                    <li>• Processed and cleaned 10k+ transactions using Python and SQL.</li>
-                    <li>• Built Power BI dashboard to visualize supply chain gaps and trends.</li>
+                    <li>• Processed and cleaned 1,000+ retail transactions using Python and Pandas for high-fidelity analysis.</li>
+                    <li>• Engineered an interactive Streamlit dashboard to visualize supply chain gaps and seasonal trends.</li>
+                    <li>• Identified key performance indicators (KPIs) to provide actionable insights for inventory optimization.</li>
                   </ul>
                 </div>
               </div>
