@@ -12,6 +12,7 @@ import {
   Smartphone,
   Box, 
   Lightbulb, 
+  Code2,
   Globe 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -140,10 +141,11 @@ const Portfolio = () => {
                   link="https://entryhub-web-platform-tuwr.vercel.app/"
                 />
                 <ProjectCard 
-                  title="Frontend Architecture" 
-                  desc="Atomic design pattern implementation for reusable component libraries."
-                  tags={['UI/UX', 'Tailwind', 'Motion']}
-                  icon={<Box />}
+                  title="SnippetFlow Platform" 
+                  desc="A developer-first code management tool built with a minimalist Linear-style aesthetic. Features real-time Supabase syncing and secure authentication."
+                  tags={['React', 'Supabase', 'Tailwind', 'CRUD']}
+                  icon={<Code2 />}
+                  link="https://snippet-flow-xi.vercel.app/"
                 />
               </>
             ) : (

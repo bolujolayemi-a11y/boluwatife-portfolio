@@ -65,8 +65,19 @@ const Resume = ({ isOpen, onClose }) => {
               <div className="space-y-10">
                 <div className="relative pl-6 border-l-2 border-orange-100">
                   <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
+                  <h4 className="text-xl font-black text-slate-900">SnippetFlow</h4>
+                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Lead Developer & Frontend Engineer</p>
+                  <ul className="text-slate-600 text-sm space-y-2 font-medium">
+                    <li>• Engineered a minimalist code management SaaS using React, Tailwind CSS, and a "Linear-inspired" design system.</li>
+                    <li>• Implemented full CRUD functionality with Supabase integration and Row Level Security (RLS) for data privacy.</li>
+                    <li>• Developed custom authentication flows and usage metrics to optimize developer workflow and productivity.</li>
+                  </ul>
+                </div>
+
+                <div className="relative pl-6 border-l-2 border-orange-100">
+                  <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
                   <h4 className="text-xl font-black text-slate-900">Pantry Guide</h4>
-                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Lead Developer & Analyst</p>
+                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Lead Developer • Analyst • Frontend Engineer</p>
                   <ul className="text-slate-600 text-sm space-y-2 font-medium">
                     <li>• Built responsive React app with Supabase for real-time data and auth.</li>
                     <li>• Engineered semantic mapping for local Nigerian ingredients to global APIs.</li>
@@ -134,20 +145,6 @@ const Resume = ({ isOpen, onClose }) => {
                 </div>
               </div>
             </section>
-
-            {/* <section>
-              <h3 className="font-black text-sm uppercase tracking-[0.3em] text-slate-300 mb-6">Recognition</h3>
-              <div className="space-y-4">
-                <div className="flex gap-3">
-                  <Award size={16} className="text-orange-500 shrink-0" />
-                  <p className="text-xs font-bold text-slate-600 leading-tight">Hackathon Finalist: Pantry Guide</p>
-                </div>
-                <div className="flex gap-3">
-                  <Briefcase size={16} className="text-orange-500 shrink-0" />
-                  <p className="text-xs font-bold text-slate-600 leading-tight">SQA Trained: Vitest & Bug Severity</p>
-                </div>
-              </div>
-            </section> */}
           </div>
         </div>
       </div>
