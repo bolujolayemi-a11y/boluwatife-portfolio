@@ -142,9 +142,10 @@ const Portfolio = () => {
                 />
                 <ProjectCard 
                   title="SnippetFlow Platform" 
-                  desc="A developer-first code management tool built with a minimalist Linear-style aesthetic. Features real-time Supabase syncing and secure authentication."
-                  tags={['React', 'Supabase', 'Tailwind', 'CRUD']}
+                  desc="A developer-first code management tool featuring an AI-powered Refinement System. Built-in logic for automated code optimization, step-by-step logic explanations, and a side-by-side comparison modal for seamless code review."
+                  tags={['React', 'Supabase', 'AI/LLM', 'Tailwind']}
                   icon={<Code2 />}
+                  isAI={true}
                   link="https://snippet-flow-xi.vercel.app/"
                 />
               </>
@@ -210,8 +211,13 @@ const TabButton = ({ active, onClick, label, icon }) => (
   </button>
 );
 
-const ProjectCard = ({ title, desc, tags, icon, link }) => (
+const ProjectCard = ({ title, desc, tags, icon, link, isAI }) => (
   <div className="group p-6 md:p-10 bg-white border border-slate-100 rounded-[30px] md:rounded-[50px] hover:border-orange-200 transition-all hover:shadow-2xl hover:shadow-orange-500/5 relative overflow-hidden flex flex-col justify-between h-full">
+    {isAI && (
+      <div className="absolute top-8 right-8 bg-orange-500 text-white text-[8px] font-black px-3 py-1 rounded-full uppercase tracking-[0.1em] z-10 shadow-lg shadow-orange-500/20">
+        AI Powered
+      </div>
+    )}
     <div>
       <div className="w-12 h-12 md:w-14 md:h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 mb-6 md:mb-8 group-hover:bg-orange-500 group-hover:text-white transition-all">
         {icon}

@@ -68,9 +68,11 @@ const Resume = ({ isOpen, onClose }) => {
                   <h4 className="text-xl font-black text-slate-900">SnippetFlow</h4>
                   <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Lead Developer & Frontend Engineer</p>
                   <ul className="text-slate-600 text-sm space-y-2 font-medium">
-                    <li>• Engineered a minimalist code management SaaS using React, Tailwind CSS, and a "Linear-inspired" design system.</li>
-                    <li>• Implemented full CRUD functionality with Supabase integration and Row Level Security (RLS) for data privacy.</li>
-                    <li>• Developed custom authentication flows and usage metrics to optimize developer workflow and productivity.</li>
+                    <li>• Engineered a minimalist code management SaaS using React and Tailwind CSS, featuring an integrated **AI Refinement System**.</li>
+                    <li>• Implemented a secure database architecture using **Supabase Row Level Security (RLS)**, ensuring strict data isolation and privacy for user snippets.</li>
+                    <li>• Integrated LLM APIs to provide automated code optimization, technical explanations, and logic debugging for saved snippets.</li>
+                    <li>• Developed a custom **Side-by-Side Comparison Modal** using Framer Motion to visualize AI-suggested changes vs. original source code.</li>
+                    <li>• Implemented a robust failover routing system between multiple AI providers (Groq/HuggingFace) to ensure 99% service uptime.</li>
                   </ul>
                 </div>
 
