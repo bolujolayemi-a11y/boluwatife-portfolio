@@ -214,7 +214,7 @@ const TabButton = ({ active, onClick, label, icon }) => (
 const ProjectCard = ({ title, desc, tags, icon, link, isAI }) => (
   <div className="group p-6 md:p-10 bg-white border border-slate-100 rounded-[30px] md:rounded-[50px] hover:border-orange-200 transition-all hover:shadow-2xl hover:shadow-orange-500/5 relative overflow-hidden flex flex-col justify-between h-full">
     {isAI && (
-      <div className="absolute top-8 right-8 bg-orange-500 text-white text-[8px] font-black px-3 py-1 rounded-full uppercase tracking-[0.1em] z-10 shadow-lg shadow-orange-500/20">
+      <div className="absolute top-8 right-8 bg-orange-500 text-white text-[8px] font-black px-3 py-1 rounded-full uppercase tracking-widest z-10 shadow-lg shadow-orange-500/20">
         AI Powered
       </div>
     )}
