@@ -51,7 +51,7 @@ const Portfolio = () => {
           </span>
         </motion.div>
         
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] md:leading-[0.9] mb-10">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] md:leading-[0.9] mb-10 text-slate-900">
           Building <span className="text-orange-500 italic">Interfaces</span>.<br />
           Analyzing <span className="text-slate-300">Data</span>.
         </h1>
@@ -167,20 +167,24 @@ const Portfolio = () => {
         </AnimatePresence>
       </section>
 
-      {/* --- FOOTER --- */}
-      <footer className="bg-slate-900 text-white py-20 px-6 md:px-20 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-10 leading-tight">
+      {/* --- FOOTER (TIGHTENED VERSION) --- */}
+      <footer className="bg-slate-900 text-white py-16 px-6 md:px-20">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-8 leading-[1.1]">
             Building the <span className="text-orange-500">future</span> of the Nigerian tech ecosystem.
           </h2>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-16">
-             <a href="mailto:boluwatifejolayemi@gmail.com" className="text-[10px] font-black uppercase tracking-[0.4em] flex items-center gap-3 hover:text-orange-500 transition-colors">
-               <Globe size={16} className="text-orange-500" /> Lagos, Nigeria
-             </a>
-             <a href="https://linkedin.com/in/boluwatife-jolayemi-195593218" target="_blank" rel="noreferrer" className="text-[10px] font-black uppercase tracking-[0.4em] flex items-center gap-3 hover:text-orange-500 transition-colors">
-               <User size={16} className="text-orange-500" /> Contact Me
-             </a>
+          
+          <div className="flex flex-col items-center gap-6 mb-12">
+             <div className="flex flex-wrap justify-center gap-x-10 gap-y-4">
+               <a href="mailto:boluwatifejolayemi@gmail.com" className="text-[10px] font-black uppercase tracking-[0.4em] flex items-center gap-3 hover:text-orange-500 transition-colors">
+                 <Globe size={16} className="text-orange-500" /> Lagos, Nigeria
+               </a>
+               <a href="https://linkedin.com/in/boluwatife-jolayemi-195593218" target="_blank" rel="noreferrer" className="text-[10px] font-black uppercase tracking-[0.4em] flex items-center gap-3 hover:text-orange-500 transition-colors">
+                 <User size={16} className="text-orange-500" /> LinkedIn
+               </a>
+             </div>
           </div>
+
           <div className="pt-8 border-t border-white/5 text-[9px] font-black uppercase tracking-[0.5em] text-white/30">
             Coded by Jolayemi Boluwatife • 2026.1.0
           </div>
@@ -195,7 +199,7 @@ const Portfolio = () => {
 const StatItem = ({ label, value }) => (
   <div>
     <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1">{label}</p>
-    <p className="font-bold text-slate-900 text-sm">{value}</p>
+    <p className="font-bold text-slate-900 text-sm whitespace-nowrap">{value}</p>
   </div>
 );
 
