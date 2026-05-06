@@ -10,6 +10,7 @@ import {
   PieChart, 
   ArrowRight, 
   Code2,
+  ShoppingBag,
   Globe 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -136,6 +137,13 @@ const Portfolio = () => {
                   tags={['React', 'CSS', 'Vite']}
                   icon={<Terminal />}
                   link="https://entryhub-web-platform-tuwr.vercel.app/"
+                />
+                <ProjectCard 
+                  title="Vendra Commerce"
+                  desc="A boutique multi-tenant e-commerce engine for Nigerian entrepreneurs. Features a high-end inventory vault, Paystack integration, and personalized store subdomains."
+                  tags={['Next.js', 'Supabase', 'Paystack']}
+                  icon={<ShoppingBag />} // Add ShoppingBag to your lucide-react imports
+                  link="https://vendra.name.ng"
                 />
                 <ProjectCard 
                   title="SnippetFlow Platform" 

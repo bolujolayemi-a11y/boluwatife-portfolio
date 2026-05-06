@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Mail, MapPin, User, ExternalLink, Globe, Award, Zap, Briefcase } from 'lucide-react';
+import { X, Mail, MapPin, User, ExternalLink, Globe, Award, Zap, Briefcase, ShoppingBag } from 'lucide-react';
 
 const Resume = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -53,47 +53,47 @@ const Resume = ({ isOpen, onClose }) => {
                 <Zap size={18} /> Summary
               </h3>
               <p className="text-slate-600 leading-relaxed font-medium">
-                Analytical Frontend Developer and Data Analyst with a focus on building high-performance, data-driven web applications. Expert in React.js and Tailwind CSS, with a specialized background in Python and Power BI for market trend analysis.
+                Analytical Frontend Developer and Data Analyst specializing in building high-performance, multi-tenant SaaS applications. Expert in Next.js and Tailwind CSS, with a deep background in Python-driven market analysis and financial system integrations.
               </p>
             </section>
 
             <section>
               <h3 className="flex items-center gap-3 font-black text-sm uppercase tracking-[0.3em] text-slate-300 mb-8">
-                <Globe size={18} /> Key Projects
+                <Briefcase size={18} /> Key Projects
               </h3>
               
               <div className="space-y-10">
+                {/* VENDRA - LEAD PROJECT */}
+                <div className="relative pl-6 border-l-2 border-orange-100">
+                  <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
+                  <h4 className="text-xl font-black text-slate-900">Vendra Commerce</h4>
+                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Founder & Lead Software Engineer</p>
+                  <ul className="text-slate-600 text-sm space-y-2 font-medium">
+                    <li>• Architected a **multi-tenant e-commerce engine** allowing users to deploy personalized storefronts with unique subdomains.</li>
+                    <li>• Integrated **Paystack Gateway** to handle secure, real-time local currency transactions and automated order fulfillment.</li>
+                    <li>• Developed a premium **Boutique Inventory Vault** featuring real-time valuation, stock scaling, and clearance logic.</li>
+                    <li>• Engineered a mobile-first UI using **Next.js App Router** and Supabase, optimizing for low-bandwidth performance.</li>
+                  </ul>
+                </div>
+
                 <div className="relative pl-6 border-l-2 border-orange-100">
                   <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
                   <h4 className="text-xl font-black text-slate-900">SnippetFlow</h4>
                   <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Lead Developer & Frontend Engineer</p>
                   <ul className="text-slate-600 text-sm space-y-2 font-medium">
-                    <li>• Engineered a minimalist code management SaaS using React and Tailwind CSS, featuring an integrated **AI Refinement System**.</li>
-                    <li>• Implemented a secure database architecture using **Supabase Row Level Security (RLS)**, ensuring strict data isolation and privacy for user snippets.</li>
-                    <li>• Integrated LLM APIs to provide automated code optimization, technical explanations, and logic debugging for saved snippets.</li>
-                    <li>• Developed a custom **Side-by-Side Comparison Modal** using Framer Motion to visualize AI-suggested changes vs. original source code.</li>
-                    <li>• Implemented a robust failover routing system between multiple AI providers (Groq/HuggingFace) to ensure 99% service uptime.</li>
+                    <li>• Engineered a minimalist code management SaaS featuring an integrated **AI Refinement System** for logic debugging.</li>
+                    <li>• Implemented secure database architecture using **Supabase RLS**, ensuring strict data isolation for user snippets.</li>
+                    <li>• Developed a side-by-side comparison modal with Framer Motion for visualizing AI-driven optimizations.</li>
                   </ul>
                 </div>
 
                 <div className="relative pl-6 border-l-2 border-orange-100">
                   <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
                   <h4 className="text-xl font-black text-slate-900">Pantry Guide</h4>
-                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Lead Developer • Analyst • Frontend Engineer</p>
+                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Lead Developer • Analyst</p>
                   <ul className="text-slate-600 text-sm space-y-2 font-medium">
-                    <li>• Built responsive React app with Supabase for real-time data and auth.</li>
-                    <li>• Engineered semantic mapping for local Nigerian ingredients to global APIs.</li>
-                    <li>• Analyzed data to identify ₦5T market gap, prioritizing social-impact features.</li>
-                  </ul>
-                </div>
-
-                <div className="relative pl-6 border-l-2 border-orange-100">
-                  <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
-                  <h4 className="text-xl font-black text-slate-900">EntryHub Platform</h4>
-                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Frontend Developer</p>
-                  <ul className="text-slate-600 text-sm space-y-2 font-medium">
-                    <li>• Developed secure QR-code verification for seamless event check-ins.</li>
-                    <li>• Managed complex state logic for ticket resales and user verification.</li>
+                    <li>• Built responsive React app targeting Nigeria's ₦5T food waste crisis via intelligent ingredient mapping.</li>
+                    <li>• Analyzed local supply patterns to prioritize social-impact features and real-time inventory management.</li>
                   </ul>
                 </div>
 
@@ -102,9 +102,8 @@ const Resume = ({ isOpen, onClose }) => {
                   <h4 className="text-xl font-black text-slate-900">Retail Sales Dashboard</h4>
                   <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Data Analyst</p>
                   <ul className="text-slate-600 text-sm space-y-2 font-medium">
-                    <li>• Processed and cleaned 1,000+ retail transactions using Python and Pandas for high-fidelity analysis.</li>
-                    <li>• Engineered an interactive Streamlit dashboard to visualize supply chain gaps and seasonal trends.</li>
-                    <li>• Identified key performance indicators (KPIs) to provide actionable insights for inventory optimization.</li>
+                    <li>• Processed 1,000+ retail transactions using **Python and Pandas** to identify supply chain gaps and seasonal trends.</li>
+                    <li>• Engineered an interactive Streamlit dashboard to provide actionable KPIs for inventory optimization.</li>
                   </ul>
                 </div>
               </div>
@@ -118,7 +117,7 @@ const Resume = ({ isOpen, onClose }) => {
                 <div>
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-2">Frontend Engineering</p>
                   <div className="flex flex-wrap gap-2">
-                    {['React.js', 'Tailwind CSS', 'Vite', 'HTML', 'CSS'].map(s => (
+                    {['Next.js', 'React.js', 'Tailwind CSS', 'Supabase', 'Vite', 'HTML', 'CSS'].map(s => (
                       <span key={s} className="px-3 py-1 bg-slate-50 text-slate-600 text-[10px] font-bold rounded-full border border-slate-100">{s}</span>
                     ))}
                   </div>
@@ -126,7 +125,7 @@ const Resume = ({ isOpen, onClose }) => {
                 <div>
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-2">Data Analytics</p>
                   <div className="flex flex-wrap gap-2">
-                    {['Python', 'Power BI', 'MsExcel', 'Matplotlib', 'Pandas'].map(s => (
+                    {['Python', 'Pandas', 'Power BI', 'Streamlit', 'Matplotlib'].map(s => (
                       <span key={s} className="px-3 py-1 bg-orange-50 text-orange-700 text-[10px] font-bold rounded-full border border-orange-100">{s}</span>
                     ))}
                   </div>
@@ -138,11 +137,11 @@ const Resume = ({ isOpen, onClose }) => {
               <h3 className="font-black text-sm uppercase tracking-[0.3em] text-slate-300 mb-6">Learning</h3>
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-xs font-black text-slate-900 uppercase leading-tight">Frontend Cohort</h4>
+                  <h4 className="text-xs font-black text-slate-900 uppercase leading-tight">Frontend Development Cohort</h4>
                   <p className="text-[10px] font-bold text-slate-400">Completed 2026</p>
                 </div>
                 <div>
-                  <h4 className="text-xs font-black text-slate-900 uppercase leading-tight">Data Analytics Training</h4>
+                  <h4 className="text-xs font-black text-slate-900 uppercase leading-tight">Data Science & Analytics</h4>
                   <p className="text-[10px] font-bold text-slate-400">Completed 2025</p>
                 </div>
               </div>
