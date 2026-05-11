@@ -11,7 +11,8 @@ import {
   ArrowRight, 
   Code2,
   ShoppingBag,
-  Globe 
+  Globe,
+  Sparkles 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -139,13 +140,6 @@ const Portfolio = () => {
                   link="https://entryhub-web-platform-tuwr.vercel.app/"
                 />
                 <ProjectCard 
-                  title="Vendra Commerce"
-                  desc="A boutique multi-tenant e-commerce engine for Nigerian entrepreneurs. Features a high-end inventory vault, Paystack integration, and personalized store subdomains."
-                  tags={['Next.js', 'Supabase', 'Paystack']}
-                  icon={<ShoppingBag />} // Add ShoppingBag to your lucide-react imports
-                  link="https://vendra.name.ng"
-                />
-                <ProjectCard 
                   title="SnippetFlow Platform" 
                   desc="Developer-first code management tool with an AI-powered Refinement System, step-by-step logic explanations, and side-by-side code review."
                   tags={['React', 'Supabase', 'AI/LLM']}
@@ -153,6 +147,22 @@ const Portfolio = () => {
                   isAI={true}
                   link="https://snippet-flow-xi.vercel.app/"
                 />
+                <ProjectCard 
+                  title="Vendra Commerce"
+                  desc="A boutique multi-tenant e-commerce engine for Nigerian entrepreneurs. Features a high-end inventory vault, Paystack integration, and personalized store subdomains."
+                  tags={['Next.js', 'Supabase', 'Paystack']}
+                  icon={<ShoppingBag />} // Add ShoppingBag to your lucide-react imports
+                  link="https://vendra.name.ng"
+                />
+                <ProjectCard 
+                  title="PixelStore Pro"
+                  desc="A premium generative design engine that uses Llama 3.3 to instantly build high-end e-commerce identities, including brand manifestos and curated product catalogs."
+                  tags={['React 19', 'Groq/LLM', 'Tailwind']}
+                  icon={<Sparkles />}
+                  isAI={true}
+                  link="https://pixel-store-mu.vercel.app/"
+                />
+                
               </>
             ) : (
               <>
