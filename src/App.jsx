@@ -1,5 +1,5 @@
 import Resume from './components/Resume';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   Code, 
   BarChart, 
@@ -9,10 +9,12 @@ import {
   Database, 
   PieChart, 
   ArrowRight, 
+  ArrowLeft,
   Code2,
   ShoppingBag,
   Globe,
-  Sparkles 
+  Sparkles,
+  HeartPulse 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -22,12 +24,25 @@ import demoMockup from './assets/demo.png';
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('development');
   const [isResumeOpen, setIsResumeOpen] = useState(false); 
+  
+  // Ref to track the horizontal slider container for custom navigation buttons
+  const sliderRef = useRef(null);
+
+  const scrollSlider = (direction) => {
+    if (sliderRef.current) {
+      const scrollAmount = direction === 'left' ? -400 : 400;
+      sliderRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] font-sans text-slate-900 selection:bg-orange-100 selection:text-orange-900">
+    <div className="min-h-screen bg-[#FDFDFD] font-sans text-slate-900 selection:bg-orange-100 selection:text-orange-900 overflow-x-hidden">
       
       {/* --- NAVIGATION --- */}
-      <nav className="fixed top-0 w-full z-100 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-4 flex justify-between items-center">
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-4 flex justify-between items-center">
         <div className="font-black text-xl tracking-tighter">BJ<span className="text-orange-500">.</span></div>
         <div className="flex gap-8 items-center">
           <a href="#work" className="hidden md:block text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-900 transition-colors">Selected Work</a>
@@ -60,7 +75,7 @@ const Portfolio = () => {
         
         <p className="text-lg md:text-xl text-slate-500 max-w-2xl font-medium leading-relaxed mb-12">
           Hi, I'm <span className="text-slate-900 font-bold underline decoration-orange-500 decoration-4 underline-offset-8">Boluwatife Jolayemi</span>. 
-          I build high-performance React applications backed by rigorous data-driven decision making.
+          I build high-performance React applications backed by data-driven decision making.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
@@ -108,84 +123,129 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* --- DUAL WORK GRID --- */}
-      <section id="work" className="px-6 md:px-20 py-20 md:py-32 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+      {/* --- SLIDING WORK CAROUSEL SECTION --- */}
+      <section id="work" className="pl-6 md:pl-20 py-20 md:py-32 max-w-7xl mx-auto overflow-hidden">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pr-6 md:pr-20">
           <div>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-slate-900">Selected Work</h2>
-            <p className="text-slate-400 font-medium italic text-sm">Toggle between Development and Data Analysis</p>
+            <p className="text-slate-400 font-medium italic text-sm">Slide horizontally to explore modules</p>
           </div>
-          <div className="flex bg-slate-100 p-1 rounded-[18px] self-start">
-            <TabButton active={activeTab === 'development'} onClick={() => setActiveTab('development')} label="Development" icon={<Code size={14} />} />
-            <TabButton active={activeTab === 'analysis'} onClick={() => setActiveTab('analysis')} label="Data Analysis" icon={<BarChart size={14} />} />
+          
+          <div className="flex flex-wrap items-center gap-4">
+            {/* Tab Swappers */}
+            <div className="flex bg-slate-100 p-1 rounded-[18px]">
+              <TabButton active={activeTab === 'development'} onClick={() => setActiveTab('development')} label="Development" icon={<Code size={14} />} />
+              <TabButton active={activeTab === 'analysis'} onClick={() => setActiveTab('analysis')} label="Data Analysis" icon={<BarChart size={14} />} />
+            </div>
+            
+            {/* Navigation Slider Arrow Buttons */}
+            <div className="hidden sm:flex gap-2">
+              <button 
+                onClick={() => scrollSlider('left')}
+                className="p-3 border border-slate-200 rounded-xl hover:border-orange-500 hover:text-orange-500 bg-white transition-all text-slate-400"
+              >
+                <ArrowLeft size={16} />
+              </button>
+              <button 
+                onClick={() => scrollSlider('right')}
+                className="p-3 border border-slate-200 rounded-xl hover:border-orange-500 hover:text-orange-500 bg-white transition-all text-slate-400"
+              >
+                <ArrowRight size={16} />
+              </button>
+            </div>
           </div>
         </div>
 
         <AnimatePresence mode="wait">
+          {/* Slider Horizontal Viewport Container Frame */}
           <motion.div 
             key={activeTab}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            ref={sliderRef}
+            className="flex gap-6 overflow-x-auto overflow-y-hidden pb-8 pr-6 md:pr-20 scrollbar-none snap-x snap-mandatory"
+            style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}
           >
             {activeTab === 'development' ? (
               <>
-                <ProjectCard 
-                  title="EntryHub Platform"
-                  desc="High-logic ticketing system with secure QR verification and real-time state management."
-                  tags={['React', 'CSS', 'Vite']}
-                  icon={<Terminal />}
-                  link="https://entryhub-web-platform-tuwr.vercel.app/"
-                />
-                <ProjectCard 
-                  title="SnippetFlow Platform" 
-                  desc="Developer-first code management tool with an AI-powered Refinement System, step-by-step logic explanations, and side-by-side code review."
-                  tags={['React', 'Supabase', 'AI/LLM']}
-                  icon={<Code2 />}
-                  isAI={true}
-                  link="https://snippet-flow-xi.vercel.app/"
-                />
-                <ProjectCard 
-                  title="Vendra Commerce"
-                  desc="A boutique multi-tenant e-commerce engine for Nigerian entrepreneurs. Features a high-end inventory vault, Paystack integration, and personalized store subdomains."
-                  tags={['Next.js', 'Supabase', 'Paystack']}
-                  icon={<ShoppingBag />} // Add ShoppingBag to your lucide-react imports
-                  link="https://vendra.name.ng"
-                />
-                <ProjectCard 
-                  title="PixelStore Pro"
-                  desc="A premium generative design engine that uses Llama 3.3 to instantly build high-end e-commerce identities, including brand manifestos and curated product catalogs."
-                  tags={['React 19', 'Groq/LLM', 'Tailwind']}
-                  icon={<Sparkles />}
-                  isAI={true}
-                  link="https://pixel-store-mu.vercel.app/"
-                />
-                
+                <div className="snap-start shrink-0 w-77.5 sm:w-105">
+                  <ProjectCard 
+                    title="Alaafia Platform"
+                    desc="A warm, professional health education companion built with deep cultural awareness. Translates complex diagnostics, local nutrition profiles, and healthcare realities into structured guidance."
+                    tags={['React', 'Appwrite BaaS', 'Groq API']}
+                    icon={<HeartPulse />}
+                    link="https://alaafia-xi.netlify.app"
+                    isSlidingBadge={true}
+                    badgeText="Live Production"
+                  />
+                </div>
+                <div className="snap-start shrink-0 w-77.5 sm:w-105">
+                  <ProjectCard 
+                    title="EntryHub Platform"
+                    desc="High-logic ticketing system with secure QR verification metrics and real-time dashboard transaction state management."
+                    tags={['React', 'CSS', 'Vite']}
+                    icon={<Terminal />}
+                    link="https://entryhub-web-platform-tuwr.vercel.app/"
+                  />
+                </div>
+                <div className="snap-start shrink-0 w-77.5 sm:w-105">
+                  <ProjectCard 
+                    title="SnippetFlow Platform" 
+                    desc="Developer-first code management tool with an AI-powered Refinement System, step-by-step logic explanations, and side-by-side reviews."
+                    tags={['React', 'Supabase', 'AI/LLM']}
+                    icon={<Code2 />}
+                    isAI={true}
+                    link="https://snippet-flow-xi.vercel.app/"
+                  />
+                </div>
+                <div className="snap-start shrink-0 w-77.5 sm:w-105">
+                  <ProjectCard 
+                    title="Vendra Commerce"
+                    desc="A boutique multi-tenant e-commerce engine for Nigerian entrepreneurs. Features a high-end inventory vault, Paystack hooks, and subdomains."
+                    tags={['React', 'Supabase', 'Paystack']}
+                    icon={<ShoppingBag />} 
+                    link="https://vendra.name.ng"
+                  />
+                </div>
+                <div className="snap-start shrink-0 w-77.5 sm:w-105">
+                  <ProjectCard 
+                    title="PixelStore Pro"
+                    desc="A premium generative design engine that uses Llama 3.3 to instantly build high-end e-commerce identities, brand manifestos, and catalogs."
+                    tags={['React 19', 'Groq/LLM', 'Tailwind']}
+                    icon={<Sparkles />}
+                    isAI={true}
+                    link="https://pixel-store-mu.vercel.app/"
+                  />
+                </div>
               </>
             ) : (
               <>
-                <ProjectCard 
-                  title="Retail Sales Dashboard"
-                  desc="Analyzing 1,000+ transactions to identify supply chain gaps and seasonal purchasing trends."
-                  tags={['Streamlit', 'Python', 'Data Viz']}
-                  icon={<PieChart />}
-                  link="https://retail-performance-dashboard.streamlit.app/"
-                />
-                <ProjectCard 
-                  title="Economic Waste Study"
-                  desc="Python-driven analysis of Nigerian agricultural data and post-harvest loss patterns."
-                  tags={['Python', 'Pandas', 'Matplotlib']}
-                  icon={<Database />}
-                />
+                <div className="snap-start shrink-0 w-77.5 sm:w-105">
+                  <ProjectCard 
+                    title="Retail Sales Dashboard"
+                    desc="Analyzing 1,000+ transactions to identify supply chain gaps, monthly revenue trends, and operations."
+                    tags={['Streamlit', 'Python', 'Data Viz']}
+                    icon={<PieChart />}
+                    link="https://retail-performance-dashboard.streamlit.app/"
+                  />
+                </div>
+                <div className="snap-start shrink-0 w-77.5 sm:w-105">
+                  <ProjectCard 
+                    title="Economic Waste Study"
+                    desc="Python-driven analysis of Nigerian agricultural data, operational variables, and post-harvest loss patterns."
+                    tags={['Python', 'Pandas', 'Matplotlib']}
+                    icon={<Database />}
+                  />
+                </div>
               </>
             )}
           </motion.div>
         </AnimatePresence>
       </section>
 
-      {/* --- FOOTER (TIGHTENED VERSION) --- */}
+      {/* --- FOOTER --- */}
       <footer className="bg-slate-900 text-white py-16 px-6 md:px-20">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-8 leading-[1.1]">
@@ -230,13 +290,28 @@ const TabButton = ({ active, onClick, label, icon }) => (
   </button>
 );
 
-const ProjectCard = ({ title, desc, tags, icon, link, isAI }) => (
-  <div className="group p-8 md:p-10 bg-white border border-slate-100 rounded-[40px] hover:border-orange-200 transition-all hover:shadow-2xl hover:shadow-orange-500/5 relative overflow-hidden flex flex-col justify-between h-full">
+const ProjectCard = ({ title, desc, tags, icon, link, isAI, isSlidingBadge, badgeText }) => (
+  <div className="group p-8 md:p-10 bg-white border border-slate-100 rounded-[40px] hover:border-orange-200 transition-all hover:shadow-2xl hover:shadow-orange-500/5 relative overflow-hidden flex flex-col justify-between h-full min-h-95">
     {isAI && (
       <div className="absolute top-6 right-6 bg-orange-500 text-white text-[8px] font-black px-3 py-1 rounded-full uppercase tracking-widest z-10">
         AI Powered
       </div>
     )}
+
+    {/* Sliding Shimmer Infinite Motion Animation Container */}
+    {isSlidingBadge && (
+      <div className="absolute top-6 right-6 overflow-hidden bg-emerald-500 rounded-full px-3 py-1 z-10">
+        <motion.div
+          animate={{ x: ["-100%", "100%"] }}
+          transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}
+          className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent skew-x-12"
+        />
+        <span className="relative text-white text-[8px] font-black uppercase tracking-widest">
+          {badgeText || "Active"}
+        </span>
+      </div>
+    )}
+
     <div>
       <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 mb-8 group-hover:bg-orange-500 group-hover:text-white transition-all">
         {icon}
@@ -250,7 +325,7 @@ const ProjectCard = ({ title, desc, tags, icon, link, isAI }) => (
       <p className="text-slate-500 font-medium leading-relaxed mb-6 text-sm md:text-base">{desc}</p>
     </div>
     {link && (
-      <a href={link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-orange-600 hover:text-orange-700 transition-colors">
+      <a href={link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-orange-600 hover:text-orange-700 transition-colors mt-auto">
         Live Link <ExternalLink size={14} />
       </a>
     )}

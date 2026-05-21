@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Mail, MapPin, User, ExternalLink, Globe, Award, Zap, Briefcase, ShoppingBag } from 'lucide-react';
+import { X, Mail, MapPin, User, ExternalLink, Award, Zap, Briefcase, HeartPulse, Code2, ShoppingBag, Terminal } from 'lucide-react';
 
 const Resume = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -53,7 +53,7 @@ const Resume = ({ isOpen, onClose }) => {
                 <Zap size={18} /> Summary
               </h3>
               <p className="text-slate-600 leading-relaxed font-medium">
-                Analytical Frontend Developer and Data Analyst specializing in building high-performance, multi-tenant SaaS applications. Expert in Next.js and Tailwind CSS, with a deep background in Python-driven market analysis and financial system integrations.
+                Analytical Frontend Developer and Data Analyst specializing in building high-performance web systems and interactive interfaces. Expert in React.js and Tailwind CSS, combining responsive UI architecture with python-driven dataset visualization to deliver impact-focused applications.
               </p>
             </section>
 
@@ -63,7 +63,20 @@ const Resume = ({ isOpen, onClose }) => {
               </h3>
               
               <div className="space-y-10">
-                {/* VENDRA - LEAD PROJECT */}
+                {/* ALAAFIA PLATFORM - INTEGRATED PRESTIGE POSITION */}
+                <div className="relative pl-6 border-l-2 border-orange-100">
+                  <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
+                  <h4 className="text-xl font-black text-slate-900">Alaafia Platform</h4>
+                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Founder & Lead Developer</p>
+                  <ul className="text-slate-600 text-sm space-y-2 font-medium">
+                    <li>• Engineered a mobile-responsive **AI health information application** built to deliver culturally aware health literacy context across Nigeria.</li>
+                    <li>• Integrated **Groq Inference Engine API** to process conversation states under a customized multi-routing prompt framework.</li>
+                    <li>• Configured backend persistent pipelines using **Appwrite BaaS** for user account authentication and relational document streaming.</li>
+                    <li>• Implemented client-side guardrails to run pre-flight emergency triaging, safely directing high-risk indicators to professional care.</li>
+                  </ul>
+                </div>
+
+                {/* VENDRA */}
                 <div className="relative pl-6 border-l-2 border-orange-100">
                   <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
                   <h4 className="text-xl font-black text-slate-900">Vendra Commerce</h4>
@@ -72,31 +85,34 @@ const Resume = ({ isOpen, onClose }) => {
                     <li>• Architected a **multi-tenant e-commerce engine** allowing users to deploy personalized storefronts with unique subdomains.</li>
                     <li>• Integrated **Paystack Gateway** to handle secure, real-time local currency transactions and automated order fulfillment.</li>
                     <li>• Developed a premium **Boutique Inventory Vault** featuring real-time valuation, stock scaling, and clearance logic.</li>
-                    <li>• Engineered a mobile-first UI using **Next.js App Router** and Supabase, optimizing for low-bandwidth performance.</li>
+                    <li>• Engineered a mobile-first UI using functional components and custom hooks, optimizing for low-bandwidth performance.</li>
                   </ul>
                 </div>
 
+                {/* SNIPPETFLOW */}
                 <div className="relative pl-6 border-l-2 border-orange-100">
                   <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
                   <h4 className="text-xl font-black text-slate-900">SnippetFlow</h4>
                   <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Lead Developer & Frontend Engineer</p>
                   <ul className="text-slate-600 text-sm space-y-2 font-medium">
                     <li>• Engineered a minimalist code management SaaS featuring an integrated **AI Refinement System** for logic debugging.</li>
-                    <li>• Implemented secure database architecture using **Supabase RLS**, ensuring strict data isolation for user snippets.</li>
+                    <li>• Implemented secure database architecture using modern storage abstractions, ensuring strict data isolation for user snippets.</li>
                     <li>• Developed a side-by-side comparison modal with Framer Motion for visualizing AI-driven optimizations.</li>
                   </ul>
                 </div>
 
+                {/* PANTRY GUIDE */}
                 <div className="relative pl-6 border-l-2 border-orange-100">
                   <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
                   <h4 className="text-xl font-black text-slate-900">Pantry Guide</h4>
-                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Lead Developer • Analyst</p>
+                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-4">Lead Developer & Analyst</p>
                   <ul className="text-slate-600 text-sm space-y-2 font-medium">
-                    <li>• Built responsive React app targeting Nigeria's ₦5T food waste crisis via intelligent ingredient mapping.</li>
+                    <li>• Built responsive React app targeting food waste containment via intelligent ingredient mapping.</li>
                     <li>• Analyzed local supply patterns to prioritize social-impact features and real-time inventory management.</li>
                   </ul>
                 </div>
 
+                {/* RETAIL SALES DASHBOARD */}
                 <div className="relative pl-6 border-l-2 border-orange-100">
                   <div className="absolute -left-2.25 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
                   <h4 className="text-xl font-black text-slate-900">Retail Sales Dashboard</h4>
@@ -117,7 +133,7 @@ const Resume = ({ isOpen, onClose }) => {
                 <div>
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-2">Frontend Engineering</p>
                   <div className="flex flex-wrap gap-2">
-                    {['Next.js', 'React.js', 'Tailwind CSS', 'Supabase', 'Vite', 'HTML', 'CSS'].map(s => (
+                    {['React.js', 'Tailwind CSS', 'Appwrite BaaS', 'Supabase', 'Vite', 'HTML', 'CSS'].map(s => (
                       <span key={s} className="px-3 py-1 bg-slate-50 text-slate-600 text-[10px] font-bold rounded-full border border-slate-100">{s}</span>
                     ))}
                   </div>
