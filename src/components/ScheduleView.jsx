@@ -9,10 +9,18 @@ export const ScheduleView = ({ onNavigate }) => {
     notes: ''
   });
 
+  // Generated clean, human-readable time slots for a professional day schedule
+  const availableTimeSlots = [
+    "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", 
+    "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", 
+    "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", 
+    "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", 
+    "05:00 PM"
+  ];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Constructing direct email payload parameters
     const emailSubject = encodeURIComponent(`Meeting Request: ${formData.name}`);
     const emailBody = encodeURIComponent(
       `Hello Boluwatife,\n\n` +
@@ -23,7 +31,6 @@ export const ScheduleView = ({ onNavigate }) => {
       `Best regards,\n${formData.name}\n(${formData.email})`
     );
 
-    // Launch native secure mail client router stream
     window.location.href = `mailto:bolujolayemi@gmail.com?subject=${emailSubject}&body=${emailBody}`;
   };
 
@@ -46,7 +53,7 @@ export const ScheduleView = ({ onNavigate }) => {
       </div>
 
       {/* CUSTOM NATIVE INPUT MATRIX BOX CONTAINER */}
-      <div className="w-full bg-black/20 border border-white/10 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-md p-6 sm:p-10 text-left max-w-2xl mx-auto">
+      <div className="w-full bg-white/5 border border-white/10 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-md p-6 sm:p-10 text-left max-w-2xl mx-auto">
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -88,16 +95,32 @@ export const ScheduleView = ({ onNavigate }) => {
                 className="w-full bg-white/5 border border-white/10 rounded-xl p-3.5 text-sm text-white focus:outline-none focus:border-pink-400 transition-colors scheme-dark"
               />
             </div>
+            
+            {/* FIXED: TIME CHANNELS CONVERTED TO A SEAMLESS SELECT DROPDOWN ELEMENT */}
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-mono tracking-wider uppercase text-pink-200/60">Preferred Time Slot</label>
-              <input 
-                type="time" 
-                name="time"
-                required
-                value={formData.time}
-                onChange={handleInputChange}
-                className="w-full bg-white/5 border border-white/10 rounded-xl p-3.5 text-sm text-white focus:outline-none focus:border-pink-400 transition-colors scheme-dark"
-              />
+              <div className="relative">
+                <select 
+                  name="time"
+                  required
+                  value={formData.time}
+                  onChange={handleInputChange}
+                  className="w-full bg-[#1b0b30]/80 border border-white/10 rounded-xl p-3.5 text-sm text-white focus:outline-none focus:border-pink-400 transition-colors appearance-none cursor-pointer"
+                >
+                  <option value="" disabled className="bg-[#1b0b30] text-white/40">Select a slot...</option>
+                  {availableTimeSlots.map((slot) => (
+                    <option key={slot} value={slot} className="bg-[#1b0b30] text-white">
+                      {slot}
+                    </option>
+                  ))}
+                </select>
+                {/* Custom Vector Dropdown Arrow Indicator */}
+                <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-white/40">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
 
