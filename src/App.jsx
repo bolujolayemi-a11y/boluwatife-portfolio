@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 import { Home } from './components/Home';
 import { AboutView } from './components/AboutView';
@@ -211,6 +212,7 @@ const App = () => {
           SYS_STATUS: • CODED BY JOLAYEMI BOLUWATIFE • 2026
         </p>
       </footer>
+      <Analytics />
     </div>
   );
 };
