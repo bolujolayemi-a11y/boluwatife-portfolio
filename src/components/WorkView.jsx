@@ -46,7 +46,7 @@ export const WorkView = () => {
       title: 'Vendra Commerce',
       category: 'Multi-Tenant Storefront Engine',
       desc: 'Advanced React and Supabase e-commerce web application engineered specifically for entrepreneurs. Empowers merchants to dynamically generate, configure, and customize their frontend storefront spaces seamlessly on demand.',
-      tags: ['React.js', 'Supabase', 'Tailwind CSS', 'PostgreSQL', 'Framer Motion'],
+      tags: ['Next.js', 'Supabase', 'Tailwind CSS', 'PostgreSQL', 'Framer Motion'],
       liveLink: 'https://vendra.name.ng',
       image: vendraMockup
     },    
