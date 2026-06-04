@@ -88,7 +88,7 @@ const App = () => {
               className={`px-4 py-2 text-[10px] uppercase font-bold tracking-wider font-sans rounded-lg transition-all border ${
                 currentView === 'contact'
                   ? (isLightMode ? 'bg-[#1b0b30] text-white border-[#1b0b30]' : 'bg-white text-[#1b0b30] border-white')
-                  : (isLightMode ? 'bg-[#1b0b30]/10 border-[#1b0b30]/20 text-[#1b0b30]' : 'bg-white/10 text-white border-white/20 hover:bg-white/20')
+                  : (isLightMode ? 'bg-[#1b0b30]/10 text-[#1b0b30] border-[#1b0b30]/20' : 'bg-white/10 text-white border-white/20 hover:bg-white/20')
               }`}
             >
               Hire Me
@@ -98,7 +98,7 @@ const App = () => {
 
         <button 
           onClick={() => setIsMobileMenuOpen(true)} 
-          className={`md:hidden p-2 focus:outline-none ${isLightMode ? 'text-[#1b0b30]' : 'text-white'}`}
+          className={`md:hidden p-2 focus:outline-none transition-colors ${isLightMode ? 'text-[#1b0b30]' : 'text-white'}`}
         >
           <Menu size={24} />
         </button>
@@ -112,36 +112,61 @@ const App = () => {
             animate={{ x: 0 }} 
             exit={{ x: '100%' }} 
             transition={{ type: 'tween', duration: 0.25 }}
-            className={`fixed inset-y-0 right-0 w-full max-w-xs z-50 p-6 flex flex-col border-l shadow-2xl ${
+            className={`fixed inset-y-0 right-0 w-full max-w-xs z-50 p-6 flex flex-col border-l shadow-2xl transition-colors duration-300 ${
               isLightMode ? 'bg-[#fcfaf2]/95 border-[#1b0b30]/10' : 'bg-[#1b0b30]/95 border-white/10'
             }`}
           >
             <div className="flex justify-between items-center mb-16">
-              <div className={`font-black text-2xl ${isLightMode ? 'text-[#1b0b30]' : 'text-white'}`}>
+              <div className={`font-black text-2xl transition-colors ${isLightMode ? 'text-[#7a5ca0]' : 'text-white'}`}>
                 BJ<span className="text-pink-400">.</span>
               </div>
               <button 
                 onClick={() => setIsMobileMenuOpen(false)} 
-                className={`focus:outline-none ${isLightMode ? 'text-[#1b0b30]/70 hover:text-[#1b0b30]' : 'text-pink-200 hover:text-white'}`}
+                className={`focus:outline-none transition-colors ${isLightMode ? 'text-[#1b0b30]/70 hover:text-[#1b0b30]' : 'text-pink-200 hover:text-white'}`}
               >
                 <X size={24} />
               </button>
             </div>
             
-            <div className="flex flex-col gap-8 text-left pl-4 mb-12">
-              {['home', 'about', 'resume', 'work', 'contact', 'schedule'].map((view) => (
+            {/* FIXED: Mobile Navigation links text configuration matching the desktop hierarchy style specs */}
+            <div className="flex flex-col gap-6 text-left pl-4 mb-12">
+              {['home', 'about', 'resume', 'work', 'contact'].map((view) => (
                 <button
                   key={view}
                   onClick={() => handleViewChange(view)}
-                  className={`text-xl font-bold uppercase tracking-wider text-left transition-colors focus:outline-none ${
-                    currentView === view 
-                      ? 'text-pink-400' 
-                      : (isLightMode ? 'text-[#1b0b30]/70 hover:text-[#1b0b30]' : 'text-pink-200/70 hover:text-white')
+                  className={`text-[11px] font-sans font-black uppercase tracking-widest text-left transition-colors focus:outline-none ${
+                    currentView === view && currentView !== 'schedule'
+                      ? (isLightMode ? 'text-[#7b5da3]' : 'text-pink-400') 
+                      : (isLightMode ? 'text-[#1b0b30]/60 hover:text-[#69508a]' : 'text-pink-200/70 hover:text-white')
                   }`}
                 >
-                  {view === 'home' ? 'Home' : view === 'about' ? 'About Me' : view === 'schedule' ? 'Schedule Meeting' : view}
+                  {view === 'home' ? 'Home' : view === 'about' ? 'About Me' : view}
                 </button>
               ))}
+            </div>
+
+            {/* FIXED: Mobile Button CTAs mirroring the specific style configurations from desktop layout */}
+            <div className="mt-auto flex flex-col gap-3 pl-4">
+              <button 
+                onClick={() => handleViewChange('schedule')}
+                className={`w-full py-3 text-[10px] uppercase font-bold tracking-wider font-sans rounded-lg transition-all border text-center cursor-pointer ${
+                  currentView === 'schedule'
+                    ? (isLightMode ? 'bg-[#1b0b30] text-white border-[#1b0b30]' : 'bg-white text-[#1b0b30] border-white')
+                    : (isLightMode ? 'bg-[#1b0b30]/5 text-[#1b0b30] border-[#1b0b30]/10 hover:bg-[#1b0b30]/10' : 'bg-white/5 text-white border-white/10 hover:bg-white/10')
+                }`}
+              >
+                Schedule a Meeting
+              </button>
+              <button 
+                onClick={() => handleViewChange('contact')}
+                className={`w-full py-3 text-[10px] uppercase font-bold tracking-wider font-sans rounded-lg transition-all border text-center cursor-pointer ${
+                  currentView === 'contact'
+                    ? (isLightMode ? 'bg-[#1b0b30] text-white border-[#1b0b30]' : 'bg-white text-[#1b0b30] border-white')
+                    : (isLightMode ? 'bg-[#1b0b30]/10 text-[#1b0b30] border-[#1b0b30]/20' : 'bg-white/10 text-white border-white/20 hover:bg-white/20')
+                }`}
+              >
+                Hire Me
+              </button>
             </div>
           </motion.div>
         )}
@@ -157,7 +182,6 @@ const App = () => {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
           >
-            {/* Child components inherit the functional dark mode configurations flawlessly */}
             {currentView === 'home' && <Home onNavigate={handleViewChange} isLightMode={isLightMode} />}
             {currentView === 'about' && <AboutView onNavigate={handleViewChange} isLightMode={isLightMode} />}
             {currentView === 'resume' && <Resume isLightMode={isLightMode} />}
