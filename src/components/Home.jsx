@@ -4,48 +4,48 @@ export const Home = ({ onNavigate }) => {
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 text-left select-none min-h-[80vh] flex flex-col justify-center">
       
-      {/* 1. UNIFIED PINK GRADIENT OPERATIONAL BADGE LABEL */}
-      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8 w-max backdrop-blur-sm">
-        <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse"></span>
-        <span className="text-[10px] font-sans font-black uppercase tracking-[0.2em] text-pink-300">
+      {/* 1. ADAPTIVE BADGE LABEL */}
+      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/10 mb-8 w-max backdrop-blur-sm transition-colors duration-300">
+        <span className="w-1.5 h-1.5 rounded-full bg-pink-500 dark:bg-pink-400 animate-pulse"></span>
+        <span className="text-[10px] font-sans font-black uppercase tracking-[0.2em] text-[#1b0b30]/80 dark:text-pink-300 transition-colors duration-300">
           Frontend Developer & Data Analyst
         </span>
       </div>
 
-      {/* 2. THE COMPLETE TEXT REFINE COLOR CANVAS */}
-      <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] text-white mb-10">
-        Building <span className="text-pink-300 italic font-serif font-normal">Interfaces</span>.
+      {/* 2. DYNAMIC CONTRAST HEADLINE */}
+      <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] text-[#1b0b30] dark:text-white mb-10 transition-colors duration-300">
+        Building <span className="text-pink-600 dark:text-pink-300 italic font-serif font-normal transition-colors duration-300">Interfaces</span>.
         <br />
-        Analyzing <span className="text-pink-200/30 font-serif font-normal">Data</span>.
+        Analyzing <span className="text-[#1b0b30]/20 dark:text-pink-200/30 font-serif font-normal transition-colors duration-300">Data</span>.
       </h1>
 
-      {/* 3. INTRODUCTORY PARAGRAPH TEXT */}
-      <p className="text-base sm:text-lg text-pink-200/60 max-w-2xl font-normal leading-relaxed mb-12">
+      {/* 3. INTRODUCTORY PARAGRAPH */}
+      <p className="text-base sm:text-lg text-[#1b0b30]/70 dark:text-pink-200/60 max-w-2xl font-normal leading-relaxed mb-12 transition-colors duration-300">
         Hi, I'm{' '}
-        <span className="text-white font-bold underline decoration-pink-400 decoration-4 underline-offset-8">
+        <span className="text-[#1b0b30] dark:text-white font-bold underline decoration-pink-500 dark:decoration-pink-400 decoration-4 underline-offset-8 transition-colors duration-300">
           Boluwatife Jolayemi
         </span>
         . I build high-performance React applications backed by data-driven logic.
       </p>
 
-      {/* 4. SHARP REFALIGNED GLASS CTAS LAYER */}
+      {/* 4. ADAPTIVE THEME GLASS CTAS */}
       <div className="flex flex-col sm:flex-row gap-4 mb-16">
         <button 
           onClick={() => onNavigate('work')}
-          className="px-8 py-4 bg-white hover:bg-pink-100 text-[#1b0b30] rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all duration-200 flex items-center justify-center gap-2 shadow-xl shadow-black/10 active:scale-98"
+          className="px-8 py-4 bg-[#1b0b30] dark:bg-white hover:bg-[#1b0b30]/90 dark:hover:bg-pink-100 text-white dark:text-[#1b0b30] rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all duration-200 flex items-center justify-center gap-2 shadow-xl shadow-black/5 dark:shadow-black/10 active:scale-98 cursor-pointer"
         >
           View My Projects <span className="text-xs">→</span>
         </button>
         <button 
           onClick={() => onNavigate('resume')}
-          className="px-8 py-4 bg-white/5 border border-white/10 text-white hover:border-white/20 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all duration-200 backdrop-blur-sm active:scale-98"
+          className="px-8 py-4 bg-transparent border border-[#1b0b30]/20 dark:border-white/10 text-[#1b0b30] dark:text-white rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all duration-200 hover:bg-[#1b0b30]/5 dark:hover:bg-white/5 active:scale-98 cursor-pointer"
         >
           View Resume
         </button>
       </div>
 
       {/* 5. MINIMAL SOCIAL FOOTER DISPATCH CHANNELS */}
-      <div className="flex gap-4 border-t border-white/10 pt-6 w-max">
+      <div className="flex gap-4 border-t border-[#1b0b30]/10 dark:border-white/10 pt-6 w-max transition-colors duration-300">
         {[
           {
             name: 'GitHub',
@@ -55,7 +55,7 @@ export const Home = ({ onNavigate }) => {
                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.57-.18-3.14-.79-3.14-3.42 0-.75.27-1.37.71-1.85-.07-.17-.31-.88.07-1.85 0 0 .58-.18 1.91.71A6.5 6.5 0 0 1 8 3.44c.51.02 1.03.07 1.52.21 1.33-.9 1.91-.71 1.91-.71.39.97.14 1.68.07 1.85.44.48.71 1.1 0 3.42 0 2.63-1.57 3.23-3.14 3.41.25.21.47.63.47 1.28 0 .93-.01 1.68-.01 1.92 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
               </svg>
             ),
-            hoverColor: 'hover:text-white'
+            hoverColor: 'hover:text-black dark:hover:text-white'
           },
           {
             name: 'LinkedIn',
@@ -83,10 +83,10 @@ export const Home = ({ onNavigate }) => {
             href={social.url}
             target="_blank"
             rel="noreferrer"
-            className={`w-10 h-10 bg-white/5 border border-white/5 rounded-xl flex items-center justify-center text-pink-200/50 ${social.hoverColor} hover:border-white/20 hover:scale-105 transition-all duration-200 relative group backdrop-blur-sm`}
+            className={`w-10 h-10 bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/5 rounded-xl flex items-center justify-center text-[#1b0b30]/40 dark:text-pink-200/50 ${social.hoverColor} hover:border-[#1b0b30]/20 dark:hover:border-white/20 hover:scale-105 transition-all duration-200 relative group backdrop-blur-sm`}
           >
-            {/* Floating Tooltip Label */}
-            <div className="absolute -top-7 opacity-0 group-hover:opacity-100 transition-all duration-200 bg-black/80 border border-white/10 text-white font-mono text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded pointer-events-none transform translate-y-1 group-hover:translate-y-0 z-30">
+            {/* Tooltip text wrapper */}
+            <div className="absolute -top-7 opacity-0 group-hover:opacity-100 transition-all duration-200 bg-black/90 border border-white/10 text-white font-mono text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded pointer-events-none transform translate-y-1 group-hover:translate-y-0 z-30">
               {social.name}
             </div>
 

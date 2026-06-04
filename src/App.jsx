@@ -12,7 +12,7 @@ import { ScheduleView } from './components/ScheduleView';
 const App = () => {
   const [currentView, setCurrentView] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLightMode, setIsLightMode] = useState(false); // Default is your purple mode
+  const [isLightMode, setIsLightMode] = useState(false); 
 
   const handleViewChange = (view) => {
     setCurrentView(view);
@@ -21,12 +21,14 @@ const App = () => {
   };
 
   return (
-    /* DYNAMIC CANVAS WRAPPER: Switches theme color setups instantly based on user interaction toggles */
-    <div className={`min-h-screen font-sans overflow-x-hidden antialiased transition-colors duration-300 ${
-      isLightMode 
-        ? 'bg-[#fcfaf2] text-[#1b0b30]' 
-        : 'bg-linear-to-br from-[#1b0b30] via-[#4c1256] to-[#693553] text-white/90'
-    }`}>
+    /* DYNAMIC CANVAS WRAPPER: Fixed to enable the 'dark' prefix class and restored your sleek gradient colors */
+    <div 
+      className={`min-h-screen font-sans overflow-x-hidden antialiased transition-colors duration-300 ${
+        isLightMode 
+          ? 'light bg-[#fcfaf2] text-[#5d477a]' 
+          : 'dark bg-linear-to-br from-[#9a7cc2] via-[#c574d3] to-[#b44f8a] text-white/90'
+      }`}
+    >
       
       {/* HEADER NAVIGATION */}
       <nav className={`fixed top-0 w-full z-50 backdrop-blur-md border-b px-6 py-5 flex justify-between items-center transition-colors duration-300 ${
@@ -37,7 +39,7 @@ const App = () => {
         <button 
           onClick={() => handleViewChange('home')} 
           className={`font-black text-2xl tracking-tighter focus:outline-none transition-colors ${
-            isLightMode ? 'text-[#1b0b30]' : 'text-white'
+            isLightMode ? 'text-[#7a5ca0]' : 'text-white'
           }`}
         >
           BJ<span className="text-pink-400">.</span>
@@ -52,8 +54,8 @@ const App = () => {
                 onClick={() => handleViewChange(view)}
                 className={`text-[10px] font-sans font-bold uppercase tracking-widest transition-colors focus:outline-none relative py-1 ${
                   currentView === view && currentView !== 'schedule'
-                    ? (isLightMode ? 'text-[#1b0b30]' : 'text-white')
-                    : (isLightMode ? 'text-[#1b0b30]/50 hover:text-[#1b0b30]' : 'text-pink-200/60 hover:text-white')
+                    ? (isLightMode ? 'text-[#7b5da3]' : 'text-white')
+                    : (isLightMode ? 'text-[#1b0b30]/50 hover:text-[#69508a]' : 'text-pink-200/60 hover:text-white')
                 }`}
               >
                 {view === 'home' ? 'Home' : view === 'about' ? 'About Me' : view}
@@ -61,7 +63,7 @@ const App = () => {
                   <motion.span 
                     layoutId="activeUnderline" 
                     className={`absolute bottom-0 left-0 w-full h-0.5 rounded-full ${
-                      isLightMode ? 'bg-[#1b0b30]' : 'bg-white'
+                      isLightMode ? 'bg-[#4f3d66]' : 'bg-white'
                     }`} 
                   />
                 )}
@@ -86,7 +88,7 @@ const App = () => {
               className={`px-4 py-2 text-[10px] uppercase font-bold tracking-wider font-sans rounded-lg transition-all border ${
                 currentView === 'contact'
                   ? (isLightMode ? 'bg-[#1b0b30] text-white border-[#1b0b30]' : 'bg-white text-[#1b0b30] border-white')
-                  : (isLightMode ? 'bg-white/10 text-white border-white/20 hover:bg-white/20' : 'bg-white/10 text-white border-white/20 hover:bg-white/20')
+                  : (isLightMode ? 'bg-[#1b0b30]/10 border-[#1b0b30]/20 text-[#1b0b30]' : 'bg-white/10 text-white border-white/20 hover:bg-white/20')
               }`}
             >
               Hire Me
@@ -141,25 +143,6 @@ const App = () => {
                 </button>
               ))}
             </div>
-
-            <div className="mt-auto flex flex-col gap-3 pl-4">
-              <button 
-                onClick={() => handleViewChange('schedule')}
-                className={`text-center w-full py-3 font-sans font-bold text-[11px] uppercase tracking-wider rounded-lg border ${
-                  isLightMode ? 'bg-[#1b0b30]/5 border-[#1b0b30]/10 text-[#1b0b30]' : 'bg-white/5 border-white/10 text-white'
-                }`}
-              >
-                Schedule a Meeting
-              </button>
-              <button 
-                onClick={() => handleViewChange('contact')}
-                className={`text-center w-full py-3 font-sans font-bold text-[11px] uppercase tracking-wider rounded-lg border ${
-                  isLightMode ? 'bg-[#1b0b30]/10 border-[#1b0b30]/20 text-[#1b0b30]' : 'bg-white/10 border-white/20 text-white'
-                }`}
-              >
-                Hire Me
-              </button>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -174,18 +157,18 @@ const App = () => {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
           >
-            {/* Pass current dark/light configuration state down if nested children elements want adjustments */}
-            {currentView === 'home' && <Home onNavigate={handleViewChange} />}
-            {currentView === 'about' && <AboutView onNavigate={handleViewChange} />}
-            {currentView === 'resume' && <Resume />}
-            {currentView === 'work' && <WorkView />}
-            {currentView === 'contact' && <ContactView onNavigate={handleViewChange} />}
-            {currentView === 'schedule' && <ScheduleView onNavigate={handleViewChange} />}
+            {/* Child components inherit the functional dark mode configurations flawlessly */}
+            {currentView === 'home' && <Home onNavigate={handleViewChange} isLightMode={isLightMode} />}
+            {currentView === 'about' && <AboutView onNavigate={handleViewChange} isLightMode={isLightMode} />}
+            {currentView === 'resume' && <Resume isLightMode={isLightMode} />}
+            {currentView === 'work' && <WorkView isLightMode={isLightMode} />}
+            {currentView === 'contact' && <ContactView onNavigate={handleViewChange} isLightMode={isLightMode} />}
+            {currentView === 'schedule' && <ScheduleView onNavigate={handleViewChange} isLightMode={isLightMode} />}
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* FLOATING ACTION MODE TOGGLE BUTTON (Matches Arham's positioning layer layout) */}
+      {/* FLOATING ACTION MODE TOGGLE BUTTON */}
       <button
         onClick={() => setIsLightMode(!isLightMode)}
         className={`fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-200 cursor-pointer shadow-xl active:scale-95 z-50 ${
@@ -193,7 +176,6 @@ const App = () => {
             ? 'bg-[#1b0b30] text-white border-[#1b0b30] hover:bg-[#1b0b30]/90' 
             : 'bg-white text-[#1b0b30] border-white hover:bg-pink-100'
         }`}
-        title={isLightMode ? "Switch to Dark Mode" : "Switch to Light Mode"}
       >
         {isLightMode ? <Moon size={18} /> : <Sun size={18} />}
       </button>
