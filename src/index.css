@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+html {
+  color-scheme: light;
+}
+
+body {
+  forced-color-adjust: none;
+  -webkit-text-size-adjust: 100%;
+}
+
 /* Custom animation configurations for your gradient flow */
 @keyframes gradient-slow {
   0% { background-position: 0% 50%; }
