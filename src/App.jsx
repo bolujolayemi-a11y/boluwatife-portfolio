@@ -1,5 +1,6 @@
 import Resume from './components/Resume';
 import React, { useState, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { 
   Code, 
   BarChart, 
@@ -40,6 +41,7 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] font-sans text-slate-900 selection:bg-orange-100 selection:text-orange-900 overflow-x-hidden">
+      <Analytics />
       
       {/* --- NAVIGATION --- */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-4 flex justify-between items-center">
