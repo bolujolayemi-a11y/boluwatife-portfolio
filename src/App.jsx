@@ -25,7 +25,7 @@ const App = () => {
     <div 
       className={`min-h-screen font-sans overflow-x-hidden antialiased transition-colors duration-300 ${
         isLightMode 
-          ? 'light bg-[#fcfaf2] text-[#5d477a]' 
+          ? 'light bg-[#d4ceb2] text-[#5d477a]' 
           : 'dark bg-linear-to-br from-[#9a7cc2] via-[#c574d3] to-[#b44f8a] text-white/90'
       }`}
     >
@@ -113,7 +113,9 @@ const App = () => {
             exit={{ x: '100%' }} 
             transition={{ type: 'tween', duration: 0.25 }}
             className={`fixed inset-y-0 right-0 w-full max-w-xs z-50 p-6 flex flex-col border-l shadow-2xl transition-colors duration-300 ${
-              isLightMode ? 'bg-[#fcfaf2]/95 border-[#1b0b30]/10' : 'bg-[#1b0b30]/95 border-white/10'
+              isLightMode 
+                ? 'bg-[#fcfaf2]/95 border-[#1b0b30]/10' 
+                : 'bg-[#9a7cc2]/95 border-white/10'
             }`}
           >
             <div className="flex justify-between items-center mb-16">
@@ -128,28 +130,36 @@ const App = () => {
               </button>
             </div>
             
-            {/* FIXED: Mobile Navigation links text configuration matching the desktop hierarchy style specs */}
+            {/* MATCHED: Mobile Navigation links text colors and styles mirror desktop configurations verbatim */}
             <div className="flex flex-col gap-6 text-left pl-4 mb-12">
               {['home', 'about', 'resume', 'work', 'contact'].map((view) => (
                 <button
                   key={view}
                   onClick={() => handleViewChange(view)}
-                  className={`text-[11px] font-sans font-black uppercase tracking-widest text-left transition-colors focus:outline-none ${
+                  className={`text-[10px] font-sans font-bold uppercase tracking-widest text-left transition-colors focus:outline-none relative py-1 w-max ${
                     currentView === view && currentView !== 'schedule'
-                      ? (isLightMode ? 'text-[#7b5da3]' : 'text-pink-400') 
-                      : (isLightMode ? 'text-[#1b0b30]/60 hover:text-[#69508a]' : 'text-pink-200/70 hover:text-white')
+                      ? (isLightMode ? 'text-[#7b5da3]' : 'text-white')
+                      : (isLightMode ? 'text-[#1b0b30]/50 hover:text-[#69508a]' : 'text-pink-200/60 hover:text-white')
                   }`}
                 >
                   {view === 'home' ? 'Home' : view === 'about' ? 'About Me' : view}
+                  {currentView === view && (
+                    <motion.span 
+                      layoutId="activeMobileUnderline" 
+                      className={`absolute bottom-0 left-0 w-full h-0.5 rounded-full ${
+                        isLightMode ? 'bg-[#4f3d66]' : 'bg-white'
+                      }`} 
+                    />
+                  )}
                 </button>
               ))}
             </div>
 
-            {/* FIXED: Mobile Button CTAs mirroring the specific style configurations from desktop layout */}
+            {/* MATCHED: Mobile CTA Actions mirror structural styles, outlines, and themes from desktop layout */}
             <div className="mt-auto flex flex-col gap-3 pl-4">
               <button 
                 onClick={() => handleViewChange('schedule')}
-                className={`w-full py-3 text-[10px] uppercase font-bold tracking-wider font-sans rounded-lg transition-all border text-center cursor-pointer ${
+                className={`w-full py-2 text-[10px] uppercase font-bold tracking-wider font-sans rounded-lg transition-all border text-center cursor-pointer ${
                   currentView === 'schedule'
                     ? (isLightMode ? 'bg-[#1b0b30] text-white border-[#1b0b30]' : 'bg-white text-[#1b0b30] border-white')
                     : (isLightMode ? 'bg-[#1b0b30]/5 text-[#1b0b30] border-[#1b0b30]/10 hover:bg-[#1b0b30]/10' : 'bg-white/5 text-white border-white/10 hover:bg-white/10')
@@ -159,7 +169,7 @@ const App = () => {
               </button>
               <button 
                 onClick={() => handleViewChange('contact')}
-                className={`w-full py-3 text-[10px] uppercase font-bold tracking-wider font-sans rounded-lg transition-all border text-center cursor-pointer ${
+                className={`w-full py-2 text-[10px] uppercase font-bold tracking-wider font-sans rounded-lg transition-all border text-center cursor-pointer ${
                   currentView === 'contact'
                     ? (isLightMode ? 'bg-[#1b0b30] text-white border-[#1b0b30]' : 'bg-white text-[#1b0b30] border-white')
                     : (isLightMode ? 'bg-[#1b0b30]/10 text-[#1b0b30] border-[#1b0b30]/20' : 'bg-white/10 text-white border-white/20 hover:bg-white/20')
