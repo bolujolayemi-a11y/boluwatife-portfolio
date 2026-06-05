@@ -97,7 +97,7 @@ const App = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.25 }}
-            className="fixed inset-y-0 right-0 w-full max-w-xs z-50 p-6 flex flex-col border-l shadow-2xl bg-white/75 backdrop-blur-xl border-[#1b0b30]/10"
+            className="fixed inset-y-0 right-0 w-full max-w-xs z-50 p-6 flex flex-col border-l shadow-2xl bg-[#1b0b30]/95 backdrop-blur-md border-white/10"
           >
             <div className="flex justify-between items-center mb-16">
               <div className="font-black text-2xl text-[#1b0b30]">
