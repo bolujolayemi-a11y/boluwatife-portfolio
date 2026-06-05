@@ -100,13 +100,13 @@ const App = () => {
             className="fixed inset-y-0 right-0 w-full max-w-xs z-50 p-6 flex flex-col border-l shadow-2xl bg-[#9a7cc2]/95 border-[#1b0b30]/10"
           >
             <div className="flex justify-between items-center mb-16">
-              <div className="font-black text-2xl text-[#1b0b30]">
+              <div className="font-black text-2xl text-[#42236b]">
                 BJ<span className="text-pink-600">.</span>
               </div>
 
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="focus:outline-none text-[#1b0b30]/70 hover:text-[#1b0b30]"
+                className="focus:outline-none text-[#1b0b30]/70 hover:text-[#4c2e72]"
               >
                 <X size={24} />
               </button>
