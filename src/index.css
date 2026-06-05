@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* html {
+html {
   color-scheme: light;
 }
 
@@ -10,7 +10,7 @@ body {
 }
 
 /* Custom animation configurations for your gradient flow */
-/* @keyframes gradient-slow {
+@keyframes gradient-slow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
@@ -27,4 +27,9 @@ body {
 
 .animate-blink {
   animation: cursor-blink 1s step-end infinite;
-} */
+}
+
+::selection {
+  background-color: rgba(219, 39, 119, 0.2);
+  color: #1e0b36;
+}

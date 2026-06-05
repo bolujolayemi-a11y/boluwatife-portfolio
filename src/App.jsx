@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 
@@ -14,6 +14,20 @@ const App = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLightMode, setIsLightMode] = useState(false);
 
+  // LIFECYCLE SYNC: Securely binds the HTML root element classes to shield against mobile browser overrides
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (isLightMode) {
+      root.classList.remove('dark');
+      root.classList.add('light');
+      root.style.colorScheme = 'light';
+    } else {
+      root.classList.remove('light');
+      root.classList.add('dark');
+      root.style.colorScheme = 'dark';
+    }
+  }, [isLightMode]);
+
   const handleViewChange = (view) => {
     setCurrentView(view);
     setIsMobileMenuOpen(false);
@@ -24,10 +38,8 @@ const App = () => {
     <div
       className={`min-h-screen font-sans overflow-x-hidden antialiased transition-colors duration-300 ${
         isLightMode
-          // LIGHT MODE (now upgraded to match design system)
-          ? 'bg-gradient-to-br from-[#f3eddc] via-[#eee9d3] to-[#e7dfc7] text-[#5d477a]'
-          // DARK MODE (unchanged aesthetic)
-          : 'bg-gradient-to-br from-[#9a7cc2] via-[#c574d3] to-[#b44f8a] text-white/90'
+          ? 'light bg-gradient-to-br from-[#f3eddc] via-[#eee9d3] to-[#e7dfc7] text-[#5d477a]'
+          : 'dark bg-gradient-to-br from-[#9a7cc2] via-[#c574d3] to-[#b44f8a] text-white/90'
       }`}
     >
 
@@ -138,7 +150,7 @@ const App = () => {
 
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`${
+                className={`focus:outline-none ${
                   isLightMode
                     ? 'text-[#1b0b30]/70 hover:text-[#1b0b30]'
                     : 'text-pink-200 hover:text-white'
@@ -153,7 +165,7 @@ const App = () => {
                 <button
                   key={view}
                   onClick={() => handleViewChange(view)}
-                  className={`text-[10px] font-sans font-bold uppercase tracking-widest relative py-1 w-max ${
+                  className={`text-[10px] font-sans font-bold uppercase tracking-widest relative py-1 w-max focus:outline-none ${
                     currentView === view
                       ? (isLightMode ? 'text-[#7b5da3]' : 'text-white')
                       : (isLightMode ? 'text-[#1b0b30]/50 hover:text-[#9f7cce]' : 'text-pink-200/60 hover:text-white')
@@ -175,14 +187,14 @@ const App = () => {
             <div className="mt-auto flex flex-col gap-3 pl-4">
               <button
                 onClick={() => handleViewChange('schedule')}
-                className={`w-full py-2 text-[10px] uppercase font-bold rounded-lg border ${
+                className={`w-full py-2 text-[10px] uppercase font-bold rounded-lg border focus:outline-none cursor-pointer transition-all ${
                   currentView === 'schedule'
                     ? (isLightMode
                         ? 'bg-[#1b0b30] text-white border-[#1b0b30]'
                         : 'bg-white text-[#1b0b30] border-white')
                     : (isLightMode
-                        ? 'bg-[#1b0b30]/5 text-[#1b0b30] border-[#1b0b30]/10'
-                        : 'bg-white/5 text-white border-white/10')
+                        ? 'bg-[#1b0b30]/5 text-[#1b0b30] border-[#1b0b30]/10 hover:bg-[#1b0b30]/10'
+                        : 'bg-white/5 text-white border-white/10 hover:bg-white/10')
                 }`}
               >
                 Schedule a Meeting
@@ -190,14 +202,14 @@ const App = () => {
 
               <button
                 onClick={() => handleViewChange('contact')}
-                className={`w-full py-2 text-[10px] uppercase font-bold rounded-lg border ${
+                className={`w-full py-2 text-[10px] uppercase font-bold rounded-lg border focus:outline-none cursor-pointer transition-all ${
                   currentView === 'contact'
                     ? (isLightMode
                         ? 'bg-[#1b0b30] text-white border-[#1b0b30]'
                         : 'bg-white text-[#1b0b30] border-white')
                     : (isLightMode
-                        ? 'bg-[#1b0b30]/10 text-[#1b0b30] border-[#1b0b30]/20'
-                        : 'bg-white/10 text-white border-white/20')
+                        ? 'bg-[#1b0b30]/10 text-[#1b0b30] border-[#1b0b30]/20 hover:bg-[#1b0b30]/20'
+                        : 'bg-white/10 text-white border-white/20 hover:bg-white/20')
                 }`}
               >
                 Hire Me
@@ -230,21 +242,21 @@ const App = () => {
       {/* FLOATING BUTTON */}
       <button
         onClick={() => setIsLightMode(!isLightMode)}
-        className={`fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center border shadow-xl ${
+        className={`fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center border shadow-xl transition-all active:scale-95 z-50 cursor-pointer ${
           isLightMode
-            ? 'bg-[#1b0b30] text-white border-[#1b0b30]'
-            : 'bg-white text-[#1b0b30] border-white'
+            ? 'bg-[#1b0b30] text-white border-[#1b0b30] hover:bg-[#1b0b30]/90'
+            : 'bg-white text-[#1b0b30] border-white hover:bg-pink-100'
         }`}
       >
         {isLightMode ? <Moon size={18} /> : <Sun size={18} />}
       </button>
 
-      <footer className={`border-t py-8 px-6 text-center ${
+      <footer className={`border-t py-8 px-6 text-center transition-colors duration-300 ${
         isLightMode
           ? 'border-[#1b0b30]/10 bg-[#1b0b30]/5'
           : 'border-white/10 bg-[#1b0b30]/20'
       }`}>
-        <p className={`text-[9px] font-mono uppercase tracking-widest ${
+        <p className={`text-[9px] font-mono uppercase tracking-widest transition-colors ${
           isLightMode ? 'text-[#1b0b30]/40' : 'text-white/40'
         }`}>
           SYS_STATUS: • CODED BY JOLAYEMI BOLUWATIFE • 2026
