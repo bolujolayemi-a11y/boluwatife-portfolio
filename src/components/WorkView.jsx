@@ -138,23 +138,22 @@ export const WorkView = () => {
             {activeProjects.map((project, idx) => (
               <div 
                 key={idx}
-                className="grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden border border-[#1b0b30]/10 hover:border-[#1b0b30]/20 transition-all duration-200 shadow-xl relative bg-[#1b0b30]/5 backdrop-blur-sm"
+                className="grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden border border-[#1b0b30]/10 dark:border-white/10 hover:border-[#1b0b30]/20 dark:hover:border-white/20 transition-all duration-200 shadow-xl relative bg-[#1b0b30]/5 dark:bg-white/5 backdrop-blur-sm"
               >
-                {/* UPGRADED: AI NODE LABEL FOR RESPONSIVE VISIBILITY AND PLACEMENT */}
                 {project.isAI && (
-                  <div className="absolute top-0 left-0 px-2.5 py-1 bg-pink-500/10 dark:bg-white/10 border-b border-r border-[#1b0b30]/10 dark:border-white/10 rounded-tl-2xl rounded-br-md z-20 transition-colors duration-300">
-                    <span className="text-[8px] font-mono font-bold tracking-widest text-pink-600 dark:text-white uppercase">AI Node</span>
+                  <div className="absolute top-0 left-0 px-2.5 py-1 bg-pink-500/10 border-b border-r border-[#1b0b30]/10 dark:border-white/10 rounded-tl-xl rounded-br-md z-20 transition-colors duration-300">
+                    <span className="text-[8px] font-mono font-bold tracking-widest text-pink-600 dark:text-pink-300 uppercase">AI Node</span>
                   </div>
                 )}
 
-                {/* LEFT CONTENT PANEL - ADDED TOP PADDING FALLBACK TO CLEANLY CLEAR THE CORNER BADGE OVERLAY */}
-                <div className="lg:col-span-5 pt-12 p-6 sm:p-8 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-[#1b0b30]/10 relative">
+                {/* LEFT CONTENT PANEL - FIXED: Increased top padding (pt-12 instead of p-6) to cleanly prevent absolute elements from overlapping layout headings */}
+                <div className="lg:col-span-5 pt-12 p-6 sm:p-8 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-[#1b0b30]/10 dark:border-white/10 relative transition-colors duration-300">
                   <div className="mb-4">
-                    <h3 className="text-xl md:text-2xl font-black text-[#1b0b30] dark:text-white tracking-tight mb-0.5">{project.title}</h3>
-                    <span className="text-[11px] font-mono font-bold text-pink-600 dark:text-pink-300 uppercase tracking-wider">{project.category}</span>
+                    <h3 className="text-xl md:text-2xl font-black text-[#1b0b30] dark:text-white tracking-tight mb-0.5 transition-colors duration-300">{project.title}</h3>
+                    <span className="text-[11px] font-mono font-bold text-pink-600 dark:text-pink-300 uppercase tracking-wider transition-colors duration-300">{project.category}</span>
                   </div>
 
-                  <p className="text-[#1b0b30]/80 dark:text-white text-xs md:text-sm leading-relaxed mb-6 font-normal">
+                  <p className="text-[#1b0b30]/80 dark:text-white text-xs md:text-sm leading-relaxed mb-6 font-normal transition-colors duration-300">
                     {project.desc}
                   </p>
 
@@ -163,7 +162,7 @@ export const WorkView = () => {
                     {project.tags.map((tag, tIdx) => (
                       <span 
                         key={tIdx} 
-                        className="text-[9px] font-mono font-bold px-2 py-1 bg-[#1b0b30]/5 dark:bg-white/10 text-[#1b0b30]/70 dark:text-white border border-[#1b0b30]/5 dark:border-white/5 rounded"
+                        className="text-[9px] font-mono font-bold px-2 py-1 bg-[#1b0b30]/5 dark:bg-white/10 text-[#1b0b30]/70 dark:text-white border border-[#1b0b30]/5 dark:border-white/10 rounded transition-colors duration-300"
                       >
                         {tag}
                       </span>
@@ -182,7 +181,7 @@ export const WorkView = () => {
                         Live Demo <ExternalLink size={11} />
                       </a>
                     ) : (
-                      <div className="text-center w-full py-3 bg-[#1b0b30]/5 dark:bg-white/5 text-[#1b0b30]/40 dark:text-white/40 rounded-xl font-mono text-[9px] uppercase tracking-wider border border-[#1b0b30]/5">
+                      <div className="text-center w-full py-3 bg-[#1b0b30]/5 dark:bg-white/5 text-[#1b0b30]/40 dark:text-white/40 rounded-xl font-mono text-[9px] uppercase tracking-wider border border-[#1b0b30]/5 dark:border-white/5 transition-colors duration-300">
                         Private Study Node
                       </div>
                     )}
@@ -190,7 +189,7 @@ export const WorkView = () => {
                 </div>
 
                 {/* RIGHT MOCKUP CONTAINER - EDGE TO EDGE HORIZONTAL FILL */}
-                <div className="lg:col-span-7 bg-[#1b0b30]/5 min-h-65 md:min-h-85 flex items-center justify-center relative overflow-hidden group">
+                <div className="lg:col-span-7 bg-[#1b0b30]/5 dark:bg-black/10 min-h-65 md:min-h-85 flex items-center justify-center relative overflow-hidden group transition-colors duration-300">
                   {project.image ? (
                     <img 
                       src={project.image} 
@@ -198,8 +197,8 @@ export const WorkView = () => {
                       className="w-full h-auto block max-h-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
                     />
                   ) : (
-                    <div className="w-full h-full min-h-65 md:min-h-85 flex flex-col items-center justify-center text-[#1b0b30]/30 font-mono text-[9px] uppercase tracking-widest gap-2">
-                      <div className="w-5 h-5 rounded-full border border-[#1b0b30]/10 flex items-center justify-center text-[8px] text-[#1b0b30]/40">
+                    <div className="w-full h-full min-h-65 md:min-h-85 flex flex-col items-center justify-center text-[#1b0b30]/30 dark:text-white/30 font-mono text-[9px] uppercase tracking-widest gap-2 transition-colors duration-300">
+                      <div className="w-5 h-5 rounded-full border border-[#1b0b30]/10 dark:border-white/10 flex items-center justify-center text-[8px] text-[#1b0b30]/40 dark:text-white/40 transition-colors duration-300">
                         {idx + 1}
                       </div>
                       <span>[ {project.title} Interface Node ]</span>
@@ -212,7 +211,6 @@ export const WorkView = () => {
           </motion.div>
         </AnimatePresence>
       </div>
-
     </div>
   );
 };
