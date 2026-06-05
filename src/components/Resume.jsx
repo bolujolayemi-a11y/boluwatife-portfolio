@@ -113,34 +113,36 @@ export const Resume = () => {
                 </div>
               )}
 
-              {/* VIEWPORTS 3: ENTHUSIASM PANE WITH HUMANIZED TEXT CHANNELS */}
+              {/* VIEWPORTS 3: COMPACT ENTHUSIASM PANE MATCHING THE MINIMALIST ICON GRID */}
               {activeSubTab === 'enthusiasm' && (
                 <div className="flex flex-col">
                   <h3 className="text-2xl font-black text-[#1b0b30] tracking-tight mb-2">Learning Enthusiasm</h3>
-                  <p className="text-[#1b0b30]/60 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
+                  <p className="text-[#1b0b30]/60 text-xs sm:text-sm leading-relaxed mb-6 font-normal max-w-2xl">
                     Integrating automated generative tooling systems, advanced data backends, and modular server architectures to scale project development bounds.
                   </p>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                  {/* UPDATED: Structured grid layout to present uniform square cards with centered icons */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-3xl">
                     {[
-                      { name: 'Claude AI', heading: 'Architecture Design', icon: <ClaudeIcon />, context: 'Code architecture planning and programmatic layout patterns.' },
-                      { name: 'ChatGPT', icon: <ChatGptIcon />, heading: 'Logic Validation', context: 'Logic validation loops and rapid blueprint component testing.' },
-                      { name: 'Gemini AI', icon: <GeminiIcon />, heading: 'Context Mapping', context: 'Context analysis tracking and document logic mapping.' },
-                      { name: 'Streamlit', icon: <StreamlitIcon />, heading: 'Analytic Dashboards', context: 'Fast internal data dashboards and analytic application staging.' },
-                      { name: 'Supabase', icon: <SupabaseIcon />, heading: 'Relational Backends', context: 'Real-time database layers, auth states, and relational models.' },
-                      { name: 'Appwrite', icon: <AppwriteIcon />, heading: 'Cloud Ecosystems', context: 'Backend cloud schemas, document storage setups, and collection arrays.' }
+                      { name: 'Claude AI', icon: <ClaudeIcon /> },
+                      { name: 'ChatGPT', icon: <ChatGptIcon /> },
+                      { name: 'Gemini AI', icon: <GeminiIcon /> },
+                      { name: 'Streamlit', icon: <StreamlitIcon /> },
+                      { name: 'Supabase', icon: <SupabaseIcon /> },
+                      { name: 'Appwrite', icon: <AppwriteIcon /> }
                     ].map((tool) => (
                       <div 
                         key={tool.name} 
-                        className="bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-4 flex flex-col gap-3.5 hover:border-[#1b0b30]/20 transition-all duration-200 group backdrop-blur-sm"
+                        className="bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-2xl aspect-square flex flex-col items-center justify-center group hover:border-[#1b0b30]/30 transition-all duration-200 relative backdrop-blur-sm"
                       >
-                        <div className="w-8 h-8 text-pink-600 transition-transform group-hover:scale-105 duration-300">
-                          {tool.icon}
+                        {/* Custom Tooltip on Hover */}
+                        <div className="absolute top-3 opacity-0 group-hover:opacity-100 transition-all duration-200 bg-black/90 border border-white/10 text-white font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded pointer-events-none transform translate-y-1 group-hover:translate-y-0 z-10">
+                          {tool.name}
                         </div>
-                        <div>
-                          {/* UPGRADED: Replaced 'Keep Exploring' with custom technical area nodes */}
-                          <h4 className="text-[#1b0b30] font-bold text-sm mb-0.5">{tool.heading}</h4>
-                          <p className="text-[#1b0b30]/60 text-[11px] leading-relaxed font-normal">{tool.context}</p>
+                        
+                        {/* Centered Icon Container */}
+                        <div className="w-10 h-10 flex items-center justify-center text-[#1b0b30]/80 transition-transform duration-200 group-hover:scale-105">
+                          {tool.icon}
                         </div>
                       </div>
                     ))}

@@ -97,7 +97,7 @@ const App = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.25 }}
-            className="fixed inset-y-0 right-0 w-full max-w-xs z-50 p-6 flex flex-col border-l shadow-2xl bg-[#1b0b30]/10 backdrop-blur-xl border-[#1b0b30]/10"
+            className="fixed inset-y-0 right-0 w-full max-w-xs z-50 p-6 flex flex-col border-l shadow-2xl bg-white/75 backdrop-blur-xl border-[#1b0b30]/10"
           >
             <div className="flex justify-between items-center mb-16">
               <div className="font-black text-2xl text-[#1b0b30]">
@@ -117,8 +117,9 @@ const App = () => {
                 <button
                   key={view}
                   onClick={() => handleViewChange(view)}
-                  className={`text-[10px] font-sans font-bold uppercase tracking-widest relative py-1 w-max focus:outline-none cursor-pointer ${
-                    currentView === view ? 'text-[#1b0b30]' : 'text-[#1b0b30]/60 hover:text-[#1b0b30]'
+                  {/* FIXED: Scaled up font sizes to text-sm and tracked tracking configurations for high legibility */}
+                  className={`text-sm font-sans font-black uppercase tracking-widest relative py-1 w-max focus:outline-none cursor-pointer ${
+                    currentView === view ? 'text-[#1b0b30]' : 'text-[#1b0b30]/50 hover:text-[#1b0b30]'
                   }`}
                 >
                   {view === 'home' ? 'Home' : view === 'about' ? 'About Me' : view}
@@ -147,9 +148,7 @@ const App = () => {
               <button
                 onClick={() => handleViewChange('contact')}
                 className={`w-full py-2.5 text-[10px] uppercase font-bold rounded-lg border focus:outline-none cursor-pointer transition-all ${
-                  currentView === 'contact'
-                    ? 'bg-[#1b0b30] text-white border-[#1b0b30]'
-                    : 'bg-[#1b0b30]/10 text-[#1b0b30] border-[#1b0b30]/20 hover:bg-[#1b0b30]/20'
+                  currentView === 'contact' ? 'text-pink-600 border-pink-600 bg-pink-500/5' : 'text-[#1b0b30]/60 hover:text-[#1b0b30]'
                 }`}
               >
                 Hire Me
@@ -169,7 +168,6 @@ const App = () => {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
           >
-            {/* Setting isLightMode={true} preserves your dark purple layout formatting universally across views */}
             {currentView === 'home' && <Home onNavigate={handleViewChange} isLightMode={true} />}
             {currentView === 'about' && <AboutView onNavigate={handleViewChange} isLightMode={true} />}
             {currentView === 'resume' && <Resume isLightMode={true} />}
