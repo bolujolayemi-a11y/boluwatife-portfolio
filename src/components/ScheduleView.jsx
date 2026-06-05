@@ -25,7 +25,6 @@ export const ScheduleView = ({ onNavigate }) => {
     setStatus({ loading: true, success: false, error: false });
 
     try {
-      // Replace 'YOUR_FORMSPREE_FORM_ID' with your actual Formspree form ID hash
       const response = await fetch('https://formspree.io/f/maqznjzv', {
         method: 'POST',
         headers: {
@@ -34,8 +33,8 @@ export const ScheduleView = ({ onNavigate }) => {
         },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email, // Named exactly 'email' so Formspree sets the correct Reply-To header automatically
-          _subject: `Meeting Request: ${formData.name}`, // Sets the custom subject heading inside Formspree alerts
+          email: formData.email, 
+          _subject: `Meeting Request: ${formData.name}`, 
           proposedDate: formData.date,
           proposedTimeSlot: formData.time,
           additionalNotes: formData.notes || 'No custom notes provided.'
@@ -45,6 +44,12 @@ export const ScheduleView = ({ onNavigate }) => {
       if (response.ok) {
         setStatus({ loading: false, success: true, error: false });
         setFormData({ name: '', email: '', date: '', time: '', notes: '' });
+        
+        // FIXED: Automatically flip back to a clean form after 4 seconds
+        setTimeout(() => {
+          setStatus({ loading: false, success: false, error: false });
+        }, 4000);
+        
       } else {
         setStatus({ loading: false, success: false, error: true });
       }
@@ -67,7 +72,7 @@ export const ScheduleView = ({ onNavigate }) => {
           Schedule a <span className="text-pink-600 italic font-serif font-normal">Meeting</span>
         </h1>
         <p className="text-sm md:text-base text-[#1b0b30]/60 max-w-2xl mx-auto font-normal leading-relaxed">
-          Select your preferred slot details below to request a 30-minute alignment session.
+          Select your preferred time details to book a 30-minute consultation to discuss your project needs and how I can help bring your ideas to life.
         </p>
       </div>
 
@@ -78,12 +83,12 @@ export const ScheduleView = ({ onNavigate }) => {
           <div className="text-center py-8 space-y-4">
             <div className="w-12 h-12 bg-pink-600/10 text-pink-600 rounded-full flex items-center justify-center mx-auto text-xl font-bold">✓</div>
             <h3 className="text-lg font-black text-[#1b0b30]">Schedule Request Transmitted!</h3>
-            <p className="text-xs text-[#1b0b30]/60 max-w-sm mx-auto">Your timeline metrics have been successfully logged. I will reach out shortly to confirm our slot details.</p>
+            <p className="text-xs text-[#1b0b30]/60 max-w-sm mx-auto">Thanks! I've received your request and will look over the details. Expect an email from me shortly to confirm our schedule.</p>
             <button 
               onClick={() => setStatus({ loading: false, success: false, error: false })}
-              className="mt-4 px-4 py-2 bg-[#1b0b30] text-white text-[10px] uppercase font-black tracking-wider rounded-xl hover:bg-[#1b0b30]/90 transition-all"
+              className="mt-4 px-4 py-2 bg-[#1b0b30] text-white text-[10px] uppercase font-black tracking-wider rounded-xl hover:bg-[#1b0b30]/90 transition-all cursor-pointer"
             >
-              Book Another Slot
+              Book Another Time
             </button>
           </div>
         ) : (
@@ -130,7 +135,7 @@ export const ScheduleView = ({ onNavigate }) => {
               </div>
               
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Preferred Time Slot</label>
+                <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Preferred Time</label>
                 <div className="relative">
                   <select 
                     name="time"
@@ -139,7 +144,7 @@ export const ScheduleView = ({ onNavigate }) => {
                     onChange={handleInputChange}
                     className="w-full bg-[#f3eddc] border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] focus:outline-none focus:border-pink-500 transition-all appearance-none cursor-pointer"
                   >
-                    <option value="" disabled className="text-[#1b0b30]/40">Select a slot...</option>
+                    <option value="" disabled className="text-[#1b0b30]/40">Select a time...</option>
                     {availableTimeSlots.map((slot) => (
                       <option key={slot} value={slot} className="text-[#1b0b30]">
                         {slot}
@@ -156,19 +161,19 @@ export const ScheduleView = ({ onNavigate }) => {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Project Concept Notes (Optional)</label>
+              <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Tell me about your project (Optional)</label>
               <textarea 
                 name="notes"
                 rows={4}
                 value={formData.notes}
                 onChange={handleInputChange}
-                placeholder="Briefly detail your core system criteria or analysis objectives..." 
+                placeholder="What are you looking to build? Mention any specific features, goals, or design styles you have in mind..." 
                 className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] placeholder:text-[#1b0b30]/30 focus:outline-none focus:border-pink-500 transition-colors resize-none"
               />
             </div>
 
             {status.error && (
-              <p className="text-xs font-bold text-red-600 mt-1">⚠️ Error syncing payload pipeline. Please check configuration settings.</p>
+              <p className="text-xs font-bold text-red-600 mt-1">⚠️ Something went wrong on my end. Please try again, or use the direct contact link below!</p>
             )}
 
             <button 
@@ -183,14 +188,14 @@ export const ScheduleView = ({ onNavigate }) => {
       </div>
 
       <p className="text-xs md:text-sm text-[#1b0b30]/60 font-sans mt-10">
-        Want to bypass the form setup?{' '}
+        Can't find a suitable time? {' '}
         <button 
           onClick={() => onNavigate('contact')}
           className="text-pink-600 font-bold hover:underline bg-transparent border-none p-0 cursor-pointer focus:outline-none"
         >
           Contact me directly
         </button>
-        {' '}instead.
+        {' '}and we'll work something out.
       </p>
 
     </div>

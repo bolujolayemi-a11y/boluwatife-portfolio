@@ -97,28 +97,27 @@ const App = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.25 }}
-            className="fixed inset-y-0 right-0 w-full max-w-xs z-50 p-6 flex flex-col border-l shadow-2xl bg-[#9a7cc2]/95 border-[#1b0b30]/10"
+            className="fixed inset-y-0 right-0 w-full max-w-xs z-50 p-6 flex flex-col border-l shadow-2xl bg-[#1b0b30]/10 backdrop-blur-xl border-[#1b0b30]/10"
           >
             <div className="flex justify-between items-center mb-16">
-              <div className="font-black text-2xl text-[#42236b]">
+              <div className="font-black text-2xl text-[#1b0b30]">
                 BJ<span className="text-pink-600">.</span>
               </div>
 
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="focus:outline-none text-[#1b0b30]/70 hover:text-[#4c2e72]"
+                className="focus:outline-none text-[#1b0b30]/70 hover:text-[#1b0b30] cursor-pointer"
               >
                 <X size={24} />
               </button>
             </div>
 
-            {/* FIXED: Removed internal theme logic checks to fix variable scope compilation errors */}
             <div className="flex flex-col gap-6 text-left pl-4 mb-12">
               {['home', 'about', 'resume', 'work', 'contact'].map((view) => (
                 <button
                   key={view}
                   onClick={() => handleViewChange(view)}
-                  className={`text-[10px] font-sans font-bold uppercase tracking-widest relative py-1 w-max focus:outline-none ${
+                  className={`text-[10px] font-sans font-bold uppercase tracking-widest relative py-1 w-max focus:outline-none cursor-pointer ${
                     currentView === view ? 'text-[#1b0b30]' : 'text-[#1b0b30]/60 hover:text-[#1b0b30]'
                   }`}
                 >
@@ -136,7 +135,7 @@ const App = () => {
             <div className="mt-auto flex flex-col gap-3 pl-4">
               <button
                 onClick={() => handleViewChange('schedule')}
-                className={`w-full py-2 text-[10px] uppercase font-bold rounded-lg border focus:outline-none cursor-pointer transition-all ${
+                className={`w-full py-2.5 text-[10px] uppercase font-bold rounded-lg border focus:outline-none cursor-pointer transition-all ${
                   currentView === 'schedule'
                     ? 'bg-[#1b0b30] text-white border-[#1b0b30]'
                     : 'bg-[#1b0b30]/5 text-[#1b0b30] border-[#1b0b30]/10 hover:bg-[#1b0b30]/10'
@@ -147,7 +146,7 @@ const App = () => {
 
               <button
                 onClick={() => handleViewChange('contact')}
-                className={`w-full py-2 text-[10px] uppercase font-bold rounded-lg border focus:outline-none cursor-pointer transition-all ${
+                className={`w-full py-2.5 text-[10px] uppercase font-bold rounded-lg border focus:outline-none cursor-pointer transition-all ${
                   currentView === 'contact'
                     ? 'bg-[#1b0b30] text-white border-[#1b0b30]'
                     : 'bg-[#1b0b30]/10 text-[#1b0b30] border-[#1b0b30]/20 hover:bg-[#1b0b30]/20'
