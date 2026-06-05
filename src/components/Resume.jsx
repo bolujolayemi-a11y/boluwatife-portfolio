@@ -21,7 +21,7 @@ export const Resume = () => {
     <div className="max-w-6xl mx-auto px-6 py-8 text-left selection:bg-pink-500/20 selection:text-pink-400">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* LEFT NAVIGATION COLUMN: DYNAMIC ADAPTIVE SIDEBAR */}
+        {/* LEFT NAVIGATION COLUMN: DYNAMIC SIDEBAR */}
         <div className="lg:col-span-3 flex flex-col gap-2.5 sticky top-24">
           {['education', 'skills', 'enthusiasm'].map((tab) => (
             <button
@@ -29,8 +29,8 @@ export const Resume = () => {
               onClick={() => setActiveSubTab(tab)}
               className={`w-full py-2.5 px-4 rounded-lg border text-[10px] font-sans font-black uppercase tracking-wider text-center transition-all duration-200 backdrop-blur-sm active:scale-98 cursor-pointer ${
                 activeSubTab === tab
-                  ? 'bg-[#1b0b30] dark:bg-white text-white dark:text-[#1b0b30] border-[#1b0b30] dark:border-white shadow-md'
-                  : 'bg-[#1b0b30]/5 dark:bg-white/5 border-[#1b0b30]/10 dark:border-white/5 text-[#1b0b30]/60 dark:text-pink-200/50 hover:border-[#1b0b30]/20 dark:hover:border-white/10 hover:text-[#1b0b30] dark:hover:text-white'
+                  ? 'bg-[#1b0b30] text-white border-[#1b0b30] shadow-md'
+                  : 'bg-[#1b0b30]/5 border-[#1b0b30]/10 text-[#1b0b30]/60 hover:border-[#1b0b30]/20 hover:text-[#1b0b30]'
               }`}
             >
               {tab === 'education' ? 'Education' : tab === 'skills' ? 'Skills' : 'Learning Enthusiasm'}
@@ -38,7 +38,7 @@ export const Resume = () => {
           ))}
         </div>
 
-        {/* RIGHT COLUMN: DYNAMIC ADAPTIVE VIEWPORTS CANVAS */}
+        {/* RIGHT COLUMN: DYNAMIC VIEWPORTS CANVAS */}
         <div className="lg:col-span-9 bg-transparent min-h-100">
           <AnimatePresence mode="wait">
             <motion.div
@@ -52,35 +52,35 @@ export const Resume = () => {
               {/* VIEWPORTS 1: COMPACT EDUCATION CARDS */}
               {activeSubTab === 'education' && (
                 <div>
-                  <h3 className="text-2xl font-black text-[#1b0b30] dark:text-white tracking-tight mb-6 transition-colors duration-300">Education</h3>
+                  <h3 className="text-2xl font-black text-[#1b0b30] tracking-tight mb-6">Education</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     
-                    <div className="bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/5 rounded-xl p-5 flex flex-col justify-between hover:border-[#1b0b30]/20 dark:hover:border-white/10 transition-all duration-200 backdrop-blur-sm group">
+                    <div className="bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-5 flex flex-col justify-between hover:border-[#1b0b30]/20 transition-all duration-200 backdrop-blur-sm group">
                       <div>
-                        <span className="font-mono font-bold text-[10px] text-pink-600 dark:text-pink-300 block mb-1 transition-colors duration-300">2021 - 2026</span>
-                        <h4 className="text-base font-bold text-[#1b0b30] dark:text-white tracking-tight transition-colors duration-300">B.Sc. in Nursing</h4>
+                        <span className="font-mono font-bold text-[10px] text-pink-600 block mb-1">2021 - 2026</span>
+                        <h4 className="text-base font-bold text-[#1b0b30] tracking-tight">B.Sc. in Nursing</h4>
                       </div>
-                      <p className="text-[#1b0b30]/50 dark:text-white/50 text-xs mt-3 border-t border-[#1b0b30]/10 dark:border-white/5 pt-2.5 font-medium transition-colors duration-300">
+                      <p className="text-[#1b0b30]/60 text-xs mt-3 border-t border-[#1b0b30]/10 pt-2.5 font-medium">
                         • Ondo State University of Medical Sciences
                       </p>
                     </div>
 
-                    <div className="bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/5 rounded-xl p-5 flex flex-col justify-between hover:border-[#1b0b30]/20 dark:hover:border-white/10 transition-all duration-200 backdrop-blur-sm group">
+                    <div className="bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-5 flex flex-col justify-between hover:border-[#1b0b30]/20 transition-all duration-200 backdrop-blur-sm group">
                       <div>
-                        <span className="font-mono font-bold text-[10px] text-pink-600 dark:text-pink-300 block mb-1 transition-colors duration-300">Graduated 2026</span>
-                        <h4 className="text-base font-bold text-[#1b0b30] dark:text-white tracking-tight transition-colors duration-300">Frontend Development</h4>
+                        <span className="font-mono font-bold text-[10px] text-pink-600 block mb-1">Graduated 2026</span>
+                        <h4 className="text-base font-bold text-[#1b0b30] tracking-tight">Frontend Development</h4>
                       </div>
-                      <p className="text-[#1b0b30]/50 dark:text-white/50 text-xs mt-3 border-t border-[#1b0b30]/10 dark:border-white/5 pt-2.5 font-medium transition-colors duration-300">
+                      <p className="text-[#1b0b30]/60 text-xs mt-3 border-t border-[#1b0b30]/10 pt-2.5 font-medium">
                         • Techyjaunt Engineering Cohort
                       </p>
                     </div>
 
-                    <div className="bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/5 rounded-xl p-5 flex flex-col justify-between hover:border-[#1b0b30]/20 dark:hover:border-white/10 transition-all duration-200 backdrop-blur-sm sm:col-span-2 group">
+                    <div className="bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-5 flex flex-col justify-between hover:border-[#1b0b30]/20 transition-all duration-200 backdrop-blur-sm sm:col-span-2 group">
                       <div>
-                        <span className="font-mono font-bold text-[10px] text-pink-600 dark:text-pink-300 block mb-1 transition-colors duration-300">Graduated 2025</span>
-                        <h4 className="text-base font-bold text-[#1b0b30] dark:text-white tracking-tight transition-colors duration-300">Data Analytics Specialization</h4>
+                        <span className="font-mono font-bold text-[10px] text-pink-600 block mb-1">Graduated 2025</span>
+                        <h4 className="text-base font-bold text-[#1b0b30] tracking-tight">Data Analytics Specialization</h4>
                       </div>
-                      <p className="text-[#1b0b30]/50 dark:text-white/50 text-xs mt-3 border-t border-[#1b0b30]/10 dark:border-white/5 pt-2.5 font-medium transition-colors duration-300">
+                      <p className="text-[#1b0b30]/60 text-xs mt-3 border-t border-[#1b0b30]/10 pt-2.5 font-medium">
                         • GetBundi Techsis Initiative
                       </p>
                     </div>
@@ -92,19 +92,19 @@ export const Resume = () => {
               {/* VIEWPORTS 2: STREAMLINED SKILLS GRID */}
               {activeSubTab === 'skills' && (
                 <div>
-                  <h3 className="text-2xl font-black text-[#1b0b30] dark:text-white tracking-tight mb-6 transition-colors duration-300">My Skills</h3>
+                  <h3 className="text-2xl font-black text-[#1b0b30] tracking-tight mb-6">My Skills</h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
                     {skillsList.map((skill) => (
                       <div 
                         key={skill.name} 
-                        className="bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/5 rounded-2xl aspect-4/3 flex flex-col items-center justify-center group hover:border-[#1b0b30]/30 dark:hover:border-white/20 transition-all duration-200 relative backdrop-blur-sm"
+                        className="bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-2xl aspect-4/3 flex flex-col items-center justify-center group hover:border-[#1b0b30]/30 transition-all duration-200 relative backdrop-blur-sm"
                       >
-                        {/* Custom Tooltip adjusted for Dark/Light Contrast profiles */}
+                        {/* Custom Tooltip */}
                         <div className="absolute top-3 opacity-0 group-hover:opacity-100 transition-all duration-200 bg-black/90 border border-white/10 text-white font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded pointer-events-none transform translate-y-1 group-hover:translate-y-0 z-10">
                           {skill.name}
                         </div>
                         
-                        <div className="w-10 h-10 flex items-center justify-center text-[#1b0b30]/80 dark:text-white/90 transition-transform duration-200 group-hover:scale-105">
+                        <div className="w-10 h-10 flex items-center justify-center text-[#1b0b30]/80 transition-transform duration-200 group-hover:scale-105">
                           {skill.icon}
                         </div>
                       </div>
@@ -116,8 +116,8 @@ export const Resume = () => {
               {/* VIEWPORTS 3: ENTHUSIASM PANE WITH DYNAMIC TEXT CHANNELS */}
               {activeSubTab === 'enthusiasm' && (
                 <div className="flex flex-col">
-                  <h3 className="text-2xl font-black text-[#1b0b30] dark:text-white tracking-tight mb-2 transition-colors duration-300">Learning Enthusiasm</h3>
-                  <p className="text-[#1b0b30]/60 dark:text-pink-200/50 text-xs sm:text-sm leading-relaxed mb-6 font-normal transition-colors duration-300">
+                  <h3 className="text-2xl font-black text-[#1b0b30] tracking-tight mb-2">Learning Enthusiasm</h3>
+                  <p className="text-[#1b0b30]/60 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
                     Implementing targeted intelligence frameworks, modern data backends, and server environments to expand technical production output bounds.
                   </p>
                   
@@ -132,14 +132,14 @@ export const Resume = () => {
                     ].map((tool) => (
                       <div 
                         key={tool.name} 
-                        className="bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/5 rounded-xl p-4 flex flex-col gap-3.5 hover:border-[#1b0b30]/20 dark:hover:border-white/10 transition-all duration-200 group backdrop-blur-sm"
+                        className="bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-4 flex flex-col gap-3.5 hover:border-[#1b0b30]/20 transition-all duration-200 group backdrop-blur-sm"
                       >
-                        <div className="w-8 h-8 text-pink-600 dark:text-pink-300 transition-transform group-hover:scale-105 duration-300">
+                        <div className="w-8 h-8 text-pink-600 transition-transform group-hover:scale-105 duration-300">
                           {tool.icon}
                         </div>
                         <div>
-                          <h4 className="text-[#1b0b30] dark:text-white font-bold text-sm mb-0.5 transition-colors duration-300">{tool.name}</h4>
-                          <p className="text-[#1b0b30]/50 dark:text-white/50 text-[11px] leading-relaxed font-normal transition-colors duration-300">{tool.context}</p>
+                          <h4 className="text-[#1b0b30] font-bold text-sm mb-0.5">Keep Exploring</h4>
+                          <p className="text-[#1b0b30]/60 text-[11px] leading-relaxed font-normal">{tool.context}</p>
                         </div>
                       </div>
                     ))}

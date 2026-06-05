@@ -45,14 +45,14 @@ export const ContactView = () => {
       {/* TWO-COLUMN GRID SPLIT */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[60vh]">
         
-        {/* LEFT CONTAINER: THE PRIMARY BACKGROUND INBOX MESSAGE DISPATCH FORM */}
+        {/* LEFT CONTAINER: THE PRIMARY MESSAGE FORM BOX */}
         <form 
           onSubmit={handleFormSubmit}
-          className="lg:col-span-7 bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/10 rounded-2xl p-6 sm:p-10 flex flex-col gap-6 backdrop-blur-sm shadow-xl transition-colors duration-300"
+          className="lg:col-span-7 bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-2xl p-6 sm:p-10 flex flex-col gap-6 backdrop-blur-sm shadow-xl"
         >
           <div>
-            <h3 className="text-2xl font-black text-[#1b0b30] dark:text-white tracking-tight mb-1 transition-colors duration-300">Let's Connect</h3>
-            <p className="text-[#1b0b30]/60 dark:text-pink-200/50 font-sans text-xs font-normal transition-colors duration-300">
+            <h3 className="text-2xl font-black text-[#1b0b30] tracking-tight mb-1">Let's Connect</h3>
+            <p className="text-[#1b0b30]/60 font-sans text-xs font-normal">
               Get in touch regarding any query for further information.
             </p>
           </div>
@@ -65,7 +65,7 @@ export const ContactView = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your Email" 
-              className="w-full bg-[#1b0b30]/5 dark:bg-black/10 border border-[#1b0b30]/10 dark:border-white/5 rounded-xl p-4 text-sm text-[#1b0b30] dark:text-white placeholder:text-[#1b0b30]/30 dark:placeholder:text-white/30 focus:outline-none focus:border-pink-500 dark:focus:border-pink-400 transition-colors disabled:opacity-50" 
+              className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-4 text-sm text-[#1b0b30] placeholder:text-[#1b0b30]/30 focus:outline-none focus:border-pink-500 transition-colors disabled:opacity-50" 
             />
           </div>
 
@@ -77,7 +77,7 @@ export const ContactView = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Type your message here..." 
-              className="w-full bg-[#1b0b30]/5 dark:bg-black/10 border border-[#1b0b30]/10 dark:border-white/5 rounded-xl p-4 text-sm text-[#1b0b30] dark:text-white placeholder:text-[#1b0b30]/30 dark:placeholder:text-white/30 focus:outline-none focus:border-pink-500 dark:focus:border-pink-400 transition-colors resize-none disabled:opacity-50" 
+              className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-4 text-sm text-[#1b0b30] placeholder:text-[#1b0b30]/30 focus:outline-none focus:border-pink-500 transition-colors resize-none disabled:opacity-50" 
             />
           </div>
 
@@ -86,8 +86,8 @@ export const ContactView = () => {
             disabled={isSending || isSent}
             className={`w-full py-4 font-sans font-black rounded-xl text-xs uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 shadow-md shadow-black/5 active:scale-98 cursor-pointer ${
               isSent 
-                ? 'bg-emerald-600/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/20 dark:border-emerald-500/30' 
-                : 'bg-[#1b0b30] dark:bg-white hover:bg-[#1b0b30]/90 dark:hover:bg-pink-100 text-white dark:text-[#1b0b30] disabled:opacity-50'
+                ? 'bg-emerald-600/10 text-emerald-700 border border-emerald-500/20' 
+                : 'bg-[#1b0b30] hover:bg-[#1b0b30]/90 text-white disabled:opacity-50'
             }`}
           >
             {isSending ? (
@@ -104,17 +104,17 @@ export const ContactView = () => {
         <div className="lg:col-span-5 flex flex-col gap-5 lg:pl-8">
           
           {/* Node 1: WhatsApp Chat Direct */}
-          <div className="bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/5 rounded-xl p-4 flex items-center gap-4 backdrop-blur-sm group hover:border-[#1b0b30]/20 dark:hover:border-white/10 transition-colors duration-300">
-            <div className="w-12 h-12 bg-[#1b0b30]/5 dark:bg-white/5 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-300 border border-[#1b0b30]/10 dark:border-white/10 transition-colors duration-300">
+          <div className="bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-4 flex items-center gap-4 backdrop-blur-sm group hover:border-[#1b0b30]/20 transition-colors duration-300">
+            <div className="w-12 h-12 bg-[#1b0b30]/5 rounded-xl flex items-center justify-center text-pink-600 border border-[#1b0b30]/10">
               <MessageSquare size={18} />
             </div>
             <div>
-              <span className="text-[10px] font-mono font-bold uppercase text-[#1b0b30]/40 dark:text-pink-200/40 tracking-wider block transition-colors duration-300">WhatsApp</span>
+              <span className="text-[10px] font-mono font-bold uppercase text-[#1b0b30]/40 tracking-wider block">WhatsApp</span>
               <a 
                 href="https://wa.me/2349066237453" 
                 target="_blank" 
                 rel="noreferrer" 
-                className="text-[#1b0b30] dark:text-white text-sm font-bold hover:text-pink-600 dark:hover:text-pink-300 transition-colors duration-300"
+                className="text-[#1b0b30] text-sm font-bold hover:text-pink-600 transition-colors"
               >
                 Contact Directly
               </a>
@@ -122,15 +122,15 @@ export const ContactView = () => {
           </div>
 
           {/* Node 2: Email Direct Link */}
-          <div className="bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/5 rounded-xl p-4 flex items-center gap-4 backdrop-blur-sm group hover:border-[#1b0b30]/20 dark:hover:border-white/10 transition-colors duration-300">
-            <div className="w-12 h-12 bg-[#1b0b30]/5 dark:bg-white/5 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-300 border border-[#1b0b30]/10 dark:border-white/10 transition-colors duration-300">
+          <div className="bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-4 flex items-center gap-4 backdrop-blur-sm group hover:border-[#1b0b30]/20 transition-colors duration-300">
+            <div className="w-12 h-12 bg-[#1b0b30]/5 rounded-xl flex items-center justify-center text-pink-600 border border-[#1b0b30]/10">
               <Mail size={18} />
             </div>
             <div>
-              <span className="text-[10px] font-mono font-bold uppercase text-[#1b0b30]/40 dark:text-pink-200/40 tracking-wider block transition-colors duration-300">Email Directly</span>
+              <span className="text-[10px] font-mono font-bold uppercase text-[#1b0b30]/40 tracking-wider block">Email Directly</span>
               <a 
                 href="mailto:bolujolayemi@gmail.com" 
-                className="text-[#1b0b30] dark:text-white text-sm font-bold hover:text-pink-600 dark:hover:text-pink-300 transition-colors break-all duration-300"
+                className="text-[#1b0b30] text-sm font-bold hover:text-pink-600 transition-colors break-all"
               >
                 bolujolayemi@gmail.com
               </a>
@@ -138,13 +138,13 @@ export const ContactView = () => {
           </div>
 
           {/* Node 3: Location Metrics */}
-          <div className="bg-[#1b0b30]/5 dark:bg-white/5 border border-[#1b0b30]/10 dark:border-white/5 rounded-xl p-4 flex items-center gap-4 backdrop-blur-sm group hover:border-[#1b0b30]/20 dark:hover:border-white/10 transition-colors duration-300">
-            <div className="w-12 h-12 bg-[#1b0b30]/5 dark:bg-white/5 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-300 border border-[#1b0b30]/10 dark:border-white/10 transition-colors duration-300">
+          <div className="bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-4 flex items-center gap-4 backdrop-blur-sm group hover:border-[#1b0b30]/20 transition-colors duration-300">
+            <div className="w-12 h-12 bg-[#1b0b30]/5 rounded-xl flex items-center justify-center text-pink-600 border border-[#1b0b30]/10">
               <MapPin size={18} />
             </div>
             <div>
-              <span className="text-[10px] font-mono font-bold uppercase text-[#1b0b30]/40 dark:text-pink-200/40 tracking-wider block transition-colors duration-300">Address</span>
-              <span className="text-[#1b0b30] dark:text-white text-sm font-bold transition-colors duration-300">Lagos, Nigeria</span>
+              <span className="text-[10px] font-mono font-bold uppercase text-[#1b0b30]/40 tracking-wider block">Address</span>
+              <span className="text-[#1b0b30] text-sm font-bold">Lagos, Nigeria</span>
             </div>
           </div>
 

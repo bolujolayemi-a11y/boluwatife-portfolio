@@ -20,8 +20,8 @@ const App = () => {
   };
 
   return (
-    /* PERMANENT THEME: Beautiful purple-pink layout background with crisp, highly readable dark purple base text */
-    <div className="min-h-screen font-sans overflow-x-hidden antialiased bg-gradient-to-br from-[#9a7cc2] via-[#c574d3] to-[#b44f8a] text-[#1b0b30]">
+    /* FIXED THEME CANVAS: Locked completely into your signature dark layout canvas with clean dark text styling */
+    <div className="min-h-screen font-sans overflow-x-hidden antialiased bg-linear-to-br from-[#9a7cc2] via-[#c574d3] to-[#b44f8a] text-[#1b0b30]">
       
       {/* HEADER NAVIGATION */}
       <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b bg-[#1b0b30]/10 border-[#1b0b30]/10 px-6 py-5 flex justify-between items-center">
@@ -110,6 +110,7 @@ const App = () => {
               </button>
             </div>
 
+            {/* FIXED: Removed internal theme logic checks to fix variable scope compilation errors */}
             <div className="flex flex-col gap-6 text-left pl-4 mb-12">
               {['home', 'about', 'resume', 'work', 'contact'].map((view) => (
                 <button
@@ -145,7 +146,7 @@ const App = () => {
               <button
                 onClick={() => handleViewChange('contact')}
                 className={`w-full py-2 text-[10px] uppercase font-bold rounded-lg border focus:outline-none cursor-pointer transition-all ${
-                  currentView === view
+                  currentView === 'contact'
                     ? 'bg-[#1b0b30] text-white border-[#1b0b30]'
                     : 'bg-[#1b0b30]/10 text-[#1b0b30] border-[#1b0b30]/20 hover:bg-[#1b0b30]/20'
                 }`}
@@ -167,7 +168,7 @@ const App = () => {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
           >
-            {/* Setting isLightMode={true} here naturally forces child components to inherit dark purple text formats */}
+            {/* Setting isLightMode={true} preserves your dark purple layout formatting universally across views */}
             {currentView === 'home' && <Home onNavigate={handleViewChange} isLightMode={true} />}
             {currentView === 'about' && <AboutView onNavigate={handleViewChange} isLightMode={true} />}
             {currentView === 'resume' && <Resume isLightMode={true} />}
