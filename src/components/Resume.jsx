@@ -113,22 +113,22 @@ export const Resume = () => {
                 </div>
               )}
 
-              {/* VIEWPORTS 3: ENTHUSIASM PANE WITH DYNAMIC TEXT CHANNELS */}
+              {/* VIEWPORTS 3: ENTHUSIASM PANE WITH HUMANIZED TEXT CHANNELS */}
               {activeSubTab === 'enthusiasm' && (
                 <div className="flex flex-col">
                   <h3 className="text-2xl font-black text-[#1b0b30] tracking-tight mb-2">Learning Enthusiasm</h3>
                   <p className="text-[#1b0b30]/60 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
-                    Implementing targeted intelligence frameworks, modern data backends, and server environments to expand technical production output bounds.
+                    Integrating automated generative tooling systems, advanced data backends, and modular server architectures to scale project development bounds.
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                     {[
-                      { name: 'Claude AI', icon: <ClaudeIcon />, context: 'Code architecture planning and programmatic layout patterns.' },
-                      { name: 'ChatGPT', icon: <ChatGptIcon />, context: 'Logic validation loops and rapid blueprint component testing.' },
-                      { name: 'Gemini AI', icon: <GeminiIcon />, context: 'Context analysis tracking and document logic mapping.' },
-                      { name: 'Streamlit', icon: <StreamlitIcon />, context: 'Fast internal data dashboards and analytic application staging.' },
-                      { name: 'Supabase', icon: <SupabaseIcon />, context: 'Real-time database layers, auth states, and relational models.' },
-                      { name: 'Appwrite', icon: <AppwriteIcon />, context: 'Backend cloud schemas, document storage setups, and collection arrays.' }
+                      { name: 'Claude AI', heading: 'Architecture Design', icon: <ClaudeIcon />, context: 'Code architecture planning and programmatic layout patterns.' },
+                      { name: 'ChatGPT', icon: <ChatGptIcon />, heading: 'Logic Validation', context: 'Logic validation loops and rapid blueprint component testing.' },
+                      { name: 'Gemini AI', icon: <GeminiIcon />, heading: 'Context Mapping', context: 'Context analysis tracking and document logic mapping.' },
+                      { name: 'Streamlit', icon: <StreamlitIcon />, heading: 'Analytic Dashboards', context: 'Fast internal data dashboards and analytic application staging.' },
+                      { name: 'Supabase', icon: <SupabaseIcon />, heading: 'Relational Backends', context: 'Real-time database layers, auth states, and relational models.' },
+                      { name: 'Appwrite', icon: <AppwriteIcon />, heading: 'Cloud Ecosystems', context: 'Backend cloud schemas, document storage setups, and collection arrays.' }
                     ].map((tool) => (
                       <div 
                         key={tool.name} 
@@ -138,7 +138,8 @@ export const Resume = () => {
                           {tool.icon}
                         </div>
                         <div>
-                          <h4 className="text-[#1b0b30] font-bold text-sm mb-0.5">Keep Exploring</h4>
+                          {/* UPGRADED: Replaced 'Keep Exploring' with custom technical area nodes */}
+                          <h4 className="text-[#1b0b30] font-bold text-sm mb-0.5">{tool.heading}</h4>
                           <p className="text-[#1b0b30]/60 text-[11px] leading-relaxed font-normal">{tool.context}</p>
                         </div>
                       </div>
