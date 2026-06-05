@@ -140,20 +140,21 @@ export const WorkView = () => {
                 key={idx}
                 className="grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden border border-[#1b0b30]/10 hover:border-[#1b0b30]/20 transition-all duration-200 shadow-xl relative bg-[#1b0b30]/5 backdrop-blur-sm"
               >
+                {/* UPGRADED: AI NODE LABEL FOR RESPONSIVE VISIBILITY AND PLACEMENT */}
                 {project.isAI && (
-                  <div className="absolute top-0 left-0 px-2.5 py-1 bg-pink-600/10 border-b border-r border-[#1b0b30]/10 rounded-tl-xl rounded-br-md z-20">
-                    <span className="text-[8px] font-mono font-bold tracking-widest text-pink-700 uppercase">AI Node</span>
+                  <div className="absolute top-0 left-0 px-2.5 py-1 bg-pink-500/10 dark:bg-white/10 border-b border-r border-[#1b0b30]/10 dark:border-white/10 rounded-tl-2xl rounded-br-md z-20 transition-colors duration-300">
+                    <span className="text-[8px] font-mono font-bold tracking-widest text-pink-600 dark:text-white uppercase">AI Node</span>
                   </div>
                 )}
 
-                {/* LEFT CONTENT PANEL */}
-                <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-[#1b0b30]/10 relative">
+                {/* LEFT CONTENT PANEL - ADDED TOP PADDING FALLBACK TO CLEANLY CLEAR THE CORNER BADGE OVERLAY */}
+                <div className="lg:col-span-5 pt-12 p-6 sm:p-8 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-[#1b0b30]/10 relative">
                   <div className="mb-4">
-                    <h3 className="text-xl md:text-2xl font-black text-[#1b0b30] tracking-tight mb-0.5">{project.title}</h3>
-                    <span className="text-[11px] font-mono font-bold text-pink-600 uppercase tracking-wider">{project.category}</span>
+                    <h3 className="text-xl md:text-2xl font-black text-[#1b0b30] dark:text-white tracking-tight mb-0.5">{project.title}</h3>
+                    <span className="text-[11px] font-mono font-bold text-pink-600 dark:text-pink-300 uppercase tracking-wider">{project.category}</span>
                   </div>
 
-                  <p className="text-[#1b0b30]/80 text-xs md:text-sm leading-relaxed mb-6 font-normal">
+                  <p className="text-[#1b0b30]/80 dark:text-white text-xs md:text-sm leading-relaxed mb-6 font-normal">
                     {project.desc}
                   </p>
 
@@ -162,7 +163,7 @@ export const WorkView = () => {
                     {project.tags.map((tag, tIdx) => (
                       <span 
                         key={tIdx} 
-                        className="text-[9px] font-mono font-bold px-2 py-1 bg-[#1b0b30]/5 text-[#1b0b30]/70 border border-[#1b0b30]/5 rounded"
+                        className="text-[9px] font-mono font-bold px-2 py-1 bg-[#1b0b30]/5 dark:bg-white/10 text-[#1b0b30]/70 dark:text-white border border-[#1b0b30]/5 dark:border-white/5 rounded"
                       >
                         {tag}
                       </span>
@@ -176,12 +177,12 @@ export const WorkView = () => {
                         href={project.liveLink} 
                         target="_blank" 
                         rel="noreferrer" 
-                        className="flex items-center justify-center gap-2 w-full py-3 bg-[#1b0b30] text-white hover:bg-[#1b0b30]/90 rounded-xl font-sans font-black text-[10px] uppercase tracking-widest transition-all duration-200 shadow-md text-center"
+                        className="flex items-center justify-center gap-2 w-full py-3 bg-[#1b0b30] dark:bg-white text-white dark:text-[#1b0b30] hover:bg-[#1b0b30]/90 dark:hover:bg-pink-100 rounded-xl font-sans font-black text-[10px] uppercase tracking-widest transition-all duration-200 shadow-md text-center"
                       >
                         Live Demo <ExternalLink size={11} />
                       </a>
                     ) : (
-                      <div className="text-center w-full py-3 bg-[#1b0b30]/5 text-[#1b0b30]/40 rounded-xl font-mono text-[9px] uppercase tracking-wider border border-[#1b0b30]/5</p>">
+                      <div className="text-center w-full py-3 bg-[#1b0b30]/5 dark:bg-white/5 text-[#1b0b30]/40 dark:text-white/40 rounded-xl font-mono text-[9px] uppercase tracking-wider border border-[#1b0b30]/5">
                         Private Study Node
                       </div>
                     )}
