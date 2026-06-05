@@ -117,7 +117,6 @@ const App = () => {
                 <button
                   key={view}
                   onClick={() => handleViewChange(view)}
-                  {/* FIXED: Scaled up font sizes to text-sm and tracked tracking configurations for high legibility */}
                   className={`text-sm font-sans font-black uppercase tracking-widest relative py-1 w-max focus:outline-none cursor-pointer ${
                     currentView === view ? 'text-[#1b0b30]' : 'text-[#1b0b30]/50 hover:text-[#1b0b30]'
                   }`}
