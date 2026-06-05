@@ -8,8 +8,10 @@ export const ScheduleView = ({ onNavigate }) => {
     time: '',
     notes: ''
   });
+  
+  // Status states to handle UX responses cleanly
+  const [status, setStatus] = useState({ loading: false, success: false, error: false });
 
-  // Clean, human-readable time slots for a professional day schedule
   const availableTimeSlots = [
     "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", 
     "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", 
@@ -18,20 +20,37 @@ export const ScheduleView = ({ onNavigate }) => {
     "05:00 PM"
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const emailSubject = encodeURIComponent(`Meeting Request: ${formData.name}`);
-    const emailBody = encodeURIComponent(
-      `Hello Boluwatife,\n\n` +
-      `I would like to schedule a 30-minute consultation meeting with you.\n\n` +
-      `Proposed Date: ${formData.date}\n` +
-      `Proposed Time Slot: ${formData.time}\n\n` +
-      `Additional Notes:\n${formData.notes}\n\n` +
-      `Best regards,\n${formData.name}\n(${formData.email})`
-    );
+    setStatus({ loading: true, success: false, error: false });
 
-    window.location.href = `mailto:bolujolayemi@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+    try {
+      // Replace 'YOUR_FORMSPREE_FORM_ID' with your actual Formspree form ID hash
+      const response = await fetch('https://formspree.io/f/maqznjzv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email, // Named exactly 'email' so Formspree sets the correct Reply-To header automatically
+          _subject: `Meeting Request: ${formData.name}`, // Sets the custom subject heading inside Formspree alerts
+          proposedDate: formData.date,
+          proposedTimeSlot: formData.time,
+          additionalNotes: formData.notes || 'No custom notes provided.'
+        })
+      });
+
+      if (response.ok) {
+        setStatus({ loading: false, success: true, error: false });
+        setFormData({ name: '', email: '', date: '', time: '', notes: '' });
+      } else {
+        setStatus({ loading: false, success: false, error: true });
+      }
+    } catch (err) {
+      setStatus({ loading: false, success: false, error: true });
+    }
   };
 
   const handleInputChange = (e) => {
@@ -54,99 +73,115 @@ export const ScheduleView = ({ onNavigate }) => {
 
       {/* CUSTOM ADAPTIVE CONTAINER MATRIX BOX */}
       <div className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-md p-6 sm:p-10 text-left max-w-2xl mx-auto">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Your Name</label>
-              <input 
-                type="text" 
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="Alex Carter" 
-                className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] placeholder:text-[#1b0b30]/30 focus:outline-none focus:border-pink-500 transition-colors"
-              />
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Email Address</label>
-              <input 
-                type="email" 
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="alex@example.com" 
-                className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] placeholder:text-[#1b0b30]/30 focus:outline-none focus:border-pink-500 transition-colors"
-              />
-            </div>
+        
+        {status.success ? (
+          <div className="text-center py-8 space-y-4">
+            <div className="w-12 h-12 bg-pink-600/10 text-pink-600 rounded-full flex items-center justify-center mx-auto text-xl font-bold">✓</div>
+            <h3 className="text-lg font-black text-[#1b0b30]">Schedule Request Transmitted!</h3>
+            <p className="text-xs text-[#1b0b30]/60 max-w-sm mx-auto">Your timeline metrics have been successfully logged. I will reach out shortly to confirm our slot details.</p>
+            <button 
+              onClick={() => setStatus({ loading: false, success: false, error: false })}
+              className="mt-4 px-4 py-2 bg-[#1b0b30] text-white text-[10px] uppercase font-black tracking-wider rounded-xl hover:bg-[#1b0b30]/90 transition-all"
+            >
+              Book Another Slot
+            </button>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Preferred Date</label>
-              <input 
-                type="date" 
-                name="date"
-                required
-                value={formData.date}
-                onChange={handleInputChange}
-                className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] focus:outline-none focus:border-pink-500 transition-colors scheme-normal"
-              />
-            </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             
-            {/* DROPDOWN SELECT FIXED FOR UNIFIED LOOK */}
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Preferred Time Slot</label>
-              <div className="relative">
-                <select 
-                  name="time"
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Your Name</label>
+                <input 
+                  type="text" 
+                  name="name"
                   required
-                  value={formData.time}
+                  value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full bg-[#f3eddc] border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] focus:outline-none focus:border-pink-500 transition-all appearance-none cursor-pointer"
-                >
-                  <option value="" disabled className="text-[#1b0b30]/40">Select a slot...</option>
-                  {availableTimeSlots.map((slot) => (
-                    <option key={slot} value={slot} className="text-[#1b0b30]">
-                      {slot}
-                    </option>
-                  ))}
-                </select>
-                {/* Custom Dropdown Arrow */}
-                <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-[#1b0b30]/40">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
+                  placeholder="Alex Carter" 
+                  className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] placeholder:text-[#1b0b30]/30 focus:outline-none focus:border-pink-500 transition-colors"
+                />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Email Address</label>
+                <input 
+                  type="email" 
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="alex@example.com" 
+                  className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] placeholder:text-[#1b0b30]/30 focus:outline-none focus:border-pink-500 transition-colors"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Preferred Date</label>
+                <input 
+                  type="date" 
+                  name="date"
+                  required
+                  value={formData.date}
+                  onChange={handleInputChange}
+                  className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] focus:outline-none focus:border-pink-500 transition-colors scheme-normal"
+                />
+              </div>
+              
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Preferred Time Slot</label>
+                <div className="relative">
+                  <select 
+                    name="time"
+                    required
+                    value={formData.time}
+                    onChange={handleInputChange}
+                    className="w-full bg-[#f3eddc] border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] focus:outline-none focus:border-pink-500 transition-all appearance-none cursor-pointer"
+                  >
+                    <option value="" disabled className="text-[#1b0b30]/40">Select a slot...</option>
+                    {availableTimeSlots.map((slot) => (
+                      <option key={slot} value={slot} className="text-[#1b0b30]">
+                        {slot}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-[#1b0b30]/40">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Project Concept Notes (Optional)</label>
-            <textarea 
-              name="notes"
-              rows={4}
-              value={formData.notes}
-              onChange={handleInputChange}
-              placeholder="Briefly detail your core system criteria or analysis objectives..." 
-              className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] placeholder:text-[#1b0b30]/30 focus:outline-none focus:border-pink-500 transition-colors resize-none"
-            />
-          </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-mono tracking-wider uppercase text-[#1b0b30]/60">Project Concept Notes (Optional)</label>
+              <textarea 
+                name="notes"
+                rows={4}
+                value={formData.notes}
+                onChange={handleInputChange}
+                placeholder="Briefly detail your core system criteria or analysis objectives..." 
+                className="w-full bg-[#1b0b30]/5 border border-[#1b0b30]/10 rounded-xl p-3.5 text-sm text-[#1b0b30] placeholder:text-[#1b0b30]/30 focus:outline-none focus:border-pink-500 transition-colors resize-none"
+              />
+            </div>
 
-          {/* Locked Submit Button */}
-          <button 
-            type="submit"
-            className="w-full py-4 mt-2 bg-[#1b0b30] hover:bg-[#1b0b30]/90 text-white rounded-xl font-sans font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-xl shadow-black/5 active:scale-98 cursor-pointer"
-          >
-            Request Meeting Schedule
-          </button>
-        </form>
+            {status.error && (
+              <p className="text-xs font-bold text-red-600 mt-1">⚠️ Error syncing payload pipeline. Please check configuration settings.</p>
+            )}
+
+            <button 
+              type="submit"
+              disabled={status.loading}
+              className="w-full py-4 mt-2 bg-[#1b0b30] hover:bg-[#1b0b30]/90 disabled:bg-[#1b0b30]/40 text-white rounded-xl font-sans font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-xl shadow-black/5 active:scale-98 cursor-pointer flex items-center justify-center gap-2"
+            >
+              {status.loading ? 'Transmitting Signals...' : 'Request Meeting Schedule'}
+            </button>
+          </form>
+        )}
       </div>
 
-      {/* FALLBACK DIRECT NAVIGATION LINK */}
       <p className="text-xs md:text-sm text-[#1b0b30]/60 font-sans mt-10">
         Want to bypass the form setup?{' '}
         <button 
