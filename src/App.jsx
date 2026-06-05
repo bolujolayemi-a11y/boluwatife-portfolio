@@ -9,6 +9,8 @@ import { WorkView } from './components/WorkView';
 import { ContactView } from './components/ContactView';
 import { ScheduleView } from './components/ScheduleView';
 
+import { Analytics } from "@vercel/analytics/react";
+
 const App = () => {
   const [currentView, setCurrentView] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,7 +24,7 @@ const App = () => {
   return (
     /* FIXED THEME CANVAS: Locked completely into your signature dark layout canvas with clean dark text styling */
     <div className="min-h-screen font-sans overflow-x-hidden antialiased bg-linear-to-br from-[#9a7cc2] via-[#c574d3] to-[#b44f8a] text-[#1b0b30]">
-      
+      <Analytics />
       {/* HEADER NAVIGATION */}
       <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b bg-[#1b0b30]/10 border-[#1b0b30]/10 px-6 py-5 flex justify-between items-center">
         <button
